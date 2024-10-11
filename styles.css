@@ -1,28 +1,53 @@
+body {
+    margin: 0; /* Убираем отступы у body */
+}
+
+/* Фоновое изображение */
+.background {
+    background-image: url('background.png'); /* Укажи корректный путь к изображению */
+    background-size: cover; /* Изображение будет покрывать весь экран */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Изображение не будет повторяться */
+    height: 100vh; /* Высота экрана */
+}
+
+/* Нижнее меню */
 .footer-nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around; /* Распределяем элементы равномерно */
     position: fixed;
     bottom: 0;
-    width: 100%;
-    background-color: #333; /* Прежний цвет */
+    left: 0; /* Обнуляем отступ слева */
+    right: 0; /* Обнуляем отступ справа */
+    background-color: #333; /* Цвет нижнего меню */
     padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Тень для нижнего меню */
 }
 
 .nav-item {
     text-align: center;
     color: white;
-    font-size: 12px; /* Уменьшение шрифта */
+    font-size: 14px; /* Увеличение размера шрифта */
+    display: flex;
+    flex-direction: column; /* Расположение элементов вертикально */
+    align-items: center; /* Центрируем содержимое по горизонтали */
+    background: transparent; /* Сделать кнопку прозрачной */
+    border: none; /* Убираем рамку */
+    cursor: pointer; /* Курсор при наведении */
 }
 
 .nav-icon {
-    width: 24px; /* Уменьшение размера иконок */
-    height: 24px;
-    margin-bottom: 5px;
+    width: 32px; /* Увеличение размера иконок */
+    height: 32px;
+    margin-bottom: 2px; /* Уменьшение отступа между иконкой и текстом */
 }
 
 .nav-item.active span {
     color: yellow;
 }
+
+
+
 
 
 

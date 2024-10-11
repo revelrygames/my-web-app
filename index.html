@@ -5,44 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web App</title>
     <link rel="stylesheet" href="styles.css"> <!-- Подключаем CSS -->
+    <style>
+        /* Добавляем фоновое изображение на весь экран */
+        body {
+            background-image: url('background.png'); /* Укажи корректный путь к изображению */
+            background-size: cover; /* Изображение будет покрывать весь экран */
+            background-position: center; /* Центрируем изображение */
+            background-repeat: no-repeat; /* Изображение не будет повторяться */
+            height: 100vh; /* Высота экрана */
+            margin: 0; /* Убираем отступы */
+        }
+
+        /* Стили для нижнего навигационного меню */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон для меню */
+            padding: 10px 0; /* Отступы сверху и снизу */
+        }
+
+        .nav-item {
+            background: transparent; /* Прозрачный фон для кнопок */
+            border: none; /* Убираем границу */
+            cursor: pointer; /* Указатель на кнопках */
+        }
+
+        .nav-icon {
+            width: 40px; /* Ширина иконок */
+            height: auto; /* Авто высота */
+        }
+    </style>
+</head>
+<body>
+    <div class="footer-nav">
+        <button class="nav-item" onclick="vibrate()">
+            <img src="icon1.png" alt="Магазин" class="nav-icon">
+        </button>
+        <button class="nav-item" onclick="vibrate()">
+            <img src="icon2.png" alt="Храм Тайн" class="nav-icon">
+        </button>
+        <button class="nav-item active" onclick="vibrate()">
+            <img src="icon3.png" alt="Билды" class="nav-icon">
+        </button>
+        <button class="nav-item" onclick="vibrate()">
+            <img src="icon4.png" alt="Друзья" class="nav-icon">
+        </button>
+        <button class="nav-item" onclick="vibrate()">
+            <img src="icon5.png" alt="Задания" class="nav-icon">
+        </button>
+    </div>
     <script>
-        // Функция для вибрации при нажатии на кнопку
         function vibrate() {
             if (navigator.vibrate) {
                 navigator.vibrate(1000); // Вибрация на 1 секунду
             }
         }
     </script>
-</head>
-<body>
-    <!-- Фоновое изображение -->
-    <div class="background"></div>
-
-    <!-- Навигационное меню внизу -->
-    <div class="footer-nav">
-        <div class="nav-item" onclick="vibrate()">
-            <img src="icon1.png" alt="!" class="nav-icon">
-            <span>Магазин</span>
-        </div>
-        <div class="nav-item" onclick="vibrate()">
-            <img src="icon2.png" alt="!" class="nav-icon">
-            <span>Храм Тайн</span>
-        </div>
-        <div class="nav-item active" onclick="vibrate()">
-            <img src="icon3.png" alt="!" class="nav-icon active">
-            <span>Билды</span>
-        </div>
-        <div class="nav-item" onclick="vibrate()">
-            <img src="icon4.png" alt="!" class="nav-icon">
-            <span>Друзья</span>
-        </div>
-        <div class="nav-item" onclick="vibrate()">
-            <img src="icon5.png" alt="!" class="nav-icon">
-            <span>Задания</span>
-        </div>
-    </div>
 </body>
 </html>
+
+
+
+
 
 
 
