@@ -1,5 +1,5 @@
 body {
-    background-image: url('background.png'); /* Указываем изображение фона */
+    background-image: url('cat.png'); /* Укажи путь к твоему изображению */
     background-size: cover; /* Изображение будет покрывать весь экран */
     background-position: center; /* Центрируем изображение */
     background-repeat: no-repeat; /* Изображение не будет повторяться */
@@ -7,10 +7,45 @@ body {
     margin: 0; /* Убираем отступы */
 }
 
-/* Стили для основного контента */
+/* Стили для фона */
 .background {
-    text-align: center;
-    color: white;
-    padding-top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; /* Уменьшаем высоту, чтобы оставить место для меню внизу */
 }
+
+/* Стили для нижнего навигационного меню */
+.footer-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333; /* Цвет фона меню */
+    padding: 10px 0;
+}
+
+/* Стили для каждого элемента навигации */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+
+/* Иконки навигации */
+.nav-icon {
+    width: 30px; /* Размер иконок */
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+/* Стили для активного элемента (выделенного) */
+.nav-item .active {
+    color: yellow; /* Активная иконка будет выделена */
+}
+
+
 
