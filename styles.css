@@ -1,5 +1,5 @@
 body {
-    background-image: url('https://example.com/images/cat.jpg'); /* Укажи корректный путь к изображению */
+    background-image: url('cat.png'); /* Указываем изображение фона */
     background-size: cover; /* Изображение будет покрывать весь экран */
     background-position: center; /* Центрируем изображение */
     background-repeat: no-repeat; /* Изображение не будет повторяться */
@@ -13,3 +13,4 @@ body {
     color: white;
     padding-top: 20%;
 }
+
