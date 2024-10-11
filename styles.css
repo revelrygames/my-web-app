@@ -1,56 +1,29 @@
-body {
-    background-image: url('background.png'); /* Убедитесь, что путь к изображению правильный */
-    background-size: cover; /* Изображение будет покрывать весь экран */
-    background-position: center; /* Центрируем изображение */
-    background-repeat: no-repeat; /* Изображение не будет повторяться */
-    height: 100vh; /* Высота экрана */
-    margin: 0; /* Убираем отступы */
-    display: flex; /* Используем flexbox для выравнивания содержимого */
-    flex-direction: column; /* Выравнивание по вертикали */
-    justify-content: center; /* Центрируем содержимое по вертикали */
-    align-items: center; /* Центрируем содержимое по горизонтали */
-}
-
-/* Стили для фона */
-.background {
-    display: flex;
-    flex-direction: column; /* Обеспечиваем вертикальное выравнивание */
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 70px); /* Уменьшаем высоту, чтобы оставить место для меню внизу */
-}
-
-/* Стили для нижнего навигационного меню */
 .footer-nav {
     display: flex;
     justify-content: space-around;
-    align-items: center;
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #333; /* Цвет фона меню */
+    background-color: #333; /* Прежний цвет */
     padding: 10px 0;
 }
 
-/* Стили для каждого элемента навигации */
 .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #fff;
+    text-align: center;
+    color: white;
+    font-size: 12px; /* Уменьшение шрифта */
 }
 
-/* Иконки навигации */
 .nav-icon {
-    width: 30px; /* Размер иконок */
-    height: 30px;
+    width: 24px; /* Уменьшение размера иконок */
+    height: 24px;
     margin-bottom: 5px;
 }
 
-/* Стили для активного элемента (выделенного) */
-.nav-item .active {
-    color: yellow; /* Активная иконка будет выделена */
+.nav-item.active span {
+    color: yellow;
 }
+
 
 
 
