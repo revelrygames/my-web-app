@@ -29,14 +29,23 @@
         }
 
         .nav-item {
+            display: flex; /* Используем flex для корректного расположения текста и иконок */
+            flex-direction: column; /* Иконки сверху, текст снизу */
+            align-items: center; /* Центрируем текст и иконки */
             background: transparent; /* Прозрачный фон для кнопок */
             border: none; /* Убираем границу */
             cursor: pointer; /* Указатель на кнопках */
+            outline: none; /* Убираем синий эффект */
+            font-size: 10px; /* Размер шрифта для текста на кнопках */
+            color: white; /* Цвет текста */
+            text-align: center; /* Центрируем текст */
         }
 
         .nav-icon {
             width: 40px; /* Ширина иконок */
             height: auto; /* Авто высота */
+            display: block; /* Сделаем изображение блочным элементом */
+            margin-bottom: 5px; /* Отступ снизу под иконкой */
         }
     </style>
 </head>
@@ -44,29 +53,39 @@
     <div class="footer-nav">
         <button class="nav-item" onclick="vibrate()">
             <img src="icon1.png" alt="Магазин" class="nav-icon">
+            <span>Магазин</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="icon2.png" alt="Храм Тайн" class="nav-icon">
+            <span>Храм Тайн</span>
         </button>
         <button class="nav-item active" onclick="vibrate()">
             <img src="icon3.png" alt="Билды" class="nav-icon">
+            <span>Билды</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="icon4.png" alt="Друзья" class="nav-icon">
+            <span>Друзья</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="icon5.png" alt="Задания" class="nav-icon">
+            <span>Задания</span>
         </button>
     </div>
+
     <script>
         function vibrate() {
             if (navigator.vibrate) {
                 navigator.vibrate(1000); // Вибрация на 1 секунду
+            } else {
+                console.log("Вибрация не поддерживается на этом устройстве");
             }
         }
     </script>
 </body>
 </html>
+
+
 
 
 
