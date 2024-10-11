@@ -3,10 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Web App</title>
+    <title>Web App</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключаем CSS -->
 </head>
 <body>
-    <h1>Привет! Это тестовое веб-приложение для Telegram</h1>
-    <p>Нажав на кнопку, ты открыл это веб-приложение через Telegram Bot.</p>
+    <div class="background">
+        <h1>Добро пожаловать!</h1>
+        <p>Это веб-приложение в Telegram с красивым фоном.</p>
+    </div>
 </body>
 </html>
+
+/* Добавляем фоновое изображение на весь экран */
+body {
+    background-image: url('cat'); /* Путь к твоему изображению */
+    background-size: cover; /* Изображение будет покрывать весь экран */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Изображение не будет повторяться */
+    height: 100vh; /* Высота экрана */
+    margin: 0; /* Убираем отступы */
+}
+
+/* Стили для основного контента */
+.background {
+    text-align: center;
+    color: white;
+    padding-top: 20%;
+}
