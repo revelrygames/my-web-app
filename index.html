@@ -24,7 +24,8 @@
             right: 0;
             display: flex;
             justify-content: space-around;
-            background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон для меню */
+            background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный черный фон для меню */
+            backdrop-filter: blur(10px); /* Эффект размытия фона */
             padding: 10px 0; /* Отступы сверху и снизу */
         }
 
@@ -37,7 +38,7 @@
             cursor: pointer; /* Указатель на кнопках */
             outline: none; /* Убираем синий эффект */
             font-size: 10px; /* Размер шрифта для текста на кнопках */
-            color: white; /* Цвет текста */
+            color: rgba(255, 255, 255, 0.7); /* Прозрачный цвет текста */
             text-align: center; /* Центрируем текст */
         }
 
@@ -61,23 +62,23 @@
 <body>
     <div class="footer-nav">
         <button class="nav-item" onclick="vibrate()">
-            <img src="icon1.png" alt="" class="nav-icon">
+            <img src="collections_icon.png" alt="" class="nav-icon">
             <span>Магазин</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
-            <img src="icon2.png" alt="" class="nav-icon">
+            <img src="collections_icon.png" alt="" class="nav-icon">
             <span>Храм Тайн</span>
         </button>
-        <button class="nav-item active" onclick="vibrate()">
-            <img src="icon3.png" alt="" class="nav-icon">
+        <button class="nav-item" onclick="vibrate()">
+            <img src="collections_icon.png" alt="" class="nav-icon">
             <span>Билды</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
-            <img src="icon4.png" alt="" class="nav-icon">
+            <img src="collections_icon.png" alt="" class="nav-icon">
             <span>Друзья</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
-            <img src="icon5.png" alt="" class="nav-icon">
+            <img src="collections_icon.png" alt="" class="nav-icon">
             <span>Задания</span>
         </button>
     </div>
@@ -93,6 +94,7 @@
     </script>
 </body>
 </html>
+
 
 
 
