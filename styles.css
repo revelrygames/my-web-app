@@ -1,18 +1,23 @@
 body {
-    background-image: url('cat.png'); /* Укажи путь к твоему изображению */
+    background-image: url('background.png'); /* Убедитесь, что путь к изображению правильный */
     background-size: cover; /* Изображение будет покрывать весь экран */
     background-position: center; /* Центрируем изображение */
     background-repeat: no-repeat; /* Изображение не будет повторяться */
     height: 100vh; /* Высота экрана */
     margin: 0; /* Убираем отступы */
+    display: flex; /* Используем flexbox для выравнивания содержимого */
+    flex-direction: column; /* Выравнивание по вертикали */
+    justify-content: center; /* Центрируем содержимое по вертикали */
+    align-items: center; /* Центрируем содержимое по горизонтали */
 }
 
 /* Стили для фона */
 .background {
     display: flex;
+    flex-direction: column; /* Обеспечиваем вертикальное выравнивание */
     justify-content: center;
     align-items: center;
-    height: 90vh; /* Уменьшаем высоту, чтобы оставить место для меню внизу */
+    height: calc(100vh - 70px); /* Уменьшаем высоту, чтобы оставить место для меню внизу */
 }
 
 /* Стили для нижнего навигационного меню */
