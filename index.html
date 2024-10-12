@@ -39,12 +39,6 @@
             font-weight: bold;
         }
 
-        .nav-item:focus,
-        .nav-item:active {
-            outline: none;
-            box-shadow: none;
-        }
-
         .nav-icon {
             width: 30px;
             height: auto;
@@ -74,15 +68,16 @@
 
         .product {
             background-color: #333;
-            border-radius: 10px;
             padding: 10px;
             text-align: center;
             color: white;
+            position: relative; /* Для обводки */
+            overflow: hidden; /* Для скрытия обводки за пределами карточки */
         }
 
         .product img {
             width: 100%;
-            border-radius: 10px;
+            display: block; /* Убедимся, что изображение отображается корректно */
         }
 
         .product .buy-button {
@@ -92,9 +87,98 @@
             padding: 10px;
             margin-top: 10px;
             width: 100%;
-            border-radius: 5px;
+            border-radius: 0 0 10px 10px; /* Закругление только нижних углов */
             cursor: pointer;
             font-weight: bold;
+            position: relative; /* Для правильного отображения */
+            z-index: 2; /* Перед обводкой, чтобы кнопка была выше */
+        }
+
+        /* Анимация красной обводки при наведении */
+        .product::before,
+        .product::after,
+        .product .top,
+        .product .bottom,
+        .product .left,
+        .product .right {
+            content: '';
+            position: absolute;
+            background-color: transparent; /* Изначально прозрачная обводка */
+            transition: all 0.2s ease; /* Ускоренный плавный переход для обводки */
+            z-index: 1; /* За картинкой, но перед текстом */
+        }
+
+        /* Верхняя граница */
+        .product .top {
+            top: 0;
+            left: 50%;
+            width: 0;
+            height: 3px; /* Толщина обводки */
+            background-color: red; /* Цвет обводки */
+            transform: translateX(-50%); /* Центрируем по горизонтали */
+        }
+
+        .product:hover .top {
+            width: 100%; /* Расширяем до полной ширины при наведении */
+        }
+
+        /* Нижняя граница */
+        .product .bottom {
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px; /* Толщина обводки */
+            background-color: red; /* Цвет обводки */
+            transform: translateX(-50%); /* Центрируем по горизонтали */
+        }
+
+        .product:hover .bottom {
+            width: 100%; /* Расширяем до полной ширины при наведении */
+        }
+
+        /* Левая граница */
+        .product .left {
+            top: 50%;
+            left: 0;
+            width: 3px; /* Толщина обводки */
+            height: 0;
+            background-color: red; /* Цвет обводки */
+            transform: translateY(-50%); /* Центрируем по вертикали */
+        }
+
+        .product:hover .left {
+            height: 100%; /* Расширяем до полной высоты при наведении */
+        }
+
+        /* Правая граница */
+        .product .right {
+            top: 50%;
+            right: 0;
+            width: 3px; /* Толщина обводки */
+            height: 0;
+            background-color: red; /* Цвет обводки */
+            transform: translateY(-50%); /* Центрируем по вертикали */
+        }
+
+        .product:hover .right {
+            height: 100%; /* Расширяем до полной высоты при наведении */
+        }
+
+        /* Стили для меню успешной покупки */
+        #purchase-message {
+            display: none; /* Скрыто по умолчанию */
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            text-align: center;
+            z-index: 10; /* Над всеми элементами */
+            opacity: 0; /* Изначально полностью прозрачный */
+            transition: opacity 0.5s ease; /* Плавный переход для появления и исчезновения */
         }
 
         /* Адаптивность для мобильных устройств */
@@ -142,18 +226,33 @@
         <div class="product-grid">
             <div class="product">
                 <img src="dbd_chap1.png" alt="Товар 1">
-                <button class="buy-button">Купить</button>
+                <div class="top"></div>
+                <div class="bottom"></div>
+                <div class="left"></div>
+                <div class="right"></div>
+                <button class="buy-button" onclick="buyProduct('Товар 1')">Купить</button>
             </div>
             <div class="product">
                 <img src="dbd_chap1.png" alt="Товар 2">
-                <button class="buy-button">Купить</button>
+                <div class="top"></div>
+                <div class="bottom"></div>
+                <div class="left"></div>
+                <div class="right"></div>
+                <button class="buy-button" onclick="buyProduct('Товар 2')">Купить</button>
             </div>
             <div class="product">
                 <img src="dbd_chap1.png" alt="Товар 3">
-                <button class="buy-button">Купить</button>
+                <div class="top"></div>
+                <div class="bottom"></div>
+                <div class="left"></div>
+                <div class="right"></div>
+                <button class="buy-button" onclick="buyProduct('Товар 3')">Купить</button>
             </div>
         </div>
     </div>
+
+    <!-- Сообщение о покупке -->
+    <div id="purchase-message">Вы успешно купили товар!</div>
 
     <script>
         let shopVisible = false;
@@ -167,22 +266,20 @@
         function vibrate() {
             if (navigator.vibrate) {
                 navigator.vibrate(15); // Вибрация на 15 миллисекунд
-            } else {
-                console.log("Вибрация не поддерживается на этом устройстве");
             }
         }
-        
-        // Отключаем контекстное меню для изображений
-        document.addEventListener('contextmenu', function(e) {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        });
 
-        // Отключаем перетаскивание изображений
-        document.querySelectorAll('img').forEach(img => {
-            img.setAttribute('draggable', false);
-        });
+        function buyProduct(productName) {
+            const message = document.getElementById('purchase-message');
+            message.style.display = 'block';
+            message.style.opacity = 1; // Делаем сообщение видимым
+            setTimeout(() => {
+                message.style.opacity = 0; // Убираем видимость
+                setTimeout(() => {
+                    message.style.display = 'none'; // Скрываем элемент
+                }, 500); // Ждем завершения анимации
+            }, 2000); // Скрыть сообщение через 2 секунды
+        }
     </script>
 </body>
 </html>
