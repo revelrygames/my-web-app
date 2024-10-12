@@ -10,6 +10,16 @@
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             color: rgb(255, 255, 255);
+            overflow-x: hidden; /* Запрет горизонтальной прокрутки */
+            overflow-y: scroll; /* Включаем вертикальную прокрутку */
+            width: 100vw; /* Фиксируем ширину окна */
+            box-sizing: border-box; /* Учет отступов в ширине */
+            scrollbar-width: none; /* Скрываем ползунок в Firefox */
+        }
+
+        /* Скрытие ползунка прокрутки в WebKit браузерах (Chrome, Safari) */
+        body::-webkit-scrollbar {
+            display: none;
         }
 
         .footer-nav {
@@ -27,6 +37,9 @@
             width: calc(100% - 20px); /* Отступы по краям */
             max-width: 600px; /* Максимальная ширина меню */
             box-sizing: border-box; /* Учет отступов в ширине */
+            border: 3px solid red; /* Увеличена толщина красной обводки */
+            border-bottom: none; /* Убрана обводка снизу */
+            z-index: 10; /* Добавляем z-index, чтобы нижнее меню всегда было поверх содержимого */
         }
 
         .nav-item {
@@ -37,7 +50,7 @@
             border: none;
             cursor: pointer;
             outline: none;
-            font-size: 10px;
+            font-size: 12px; /* Изменено на 12px для единообразия */
             color: rgb(255, 255, 255); /* Изменено на полностью белый */
             text-align: center;
             margin: 0 5px;
@@ -46,8 +59,8 @@
         }
 
         .nav-item span {
-            font-size: 12px;
-            opacity: 0.7;
+            font-size: 12px; /* Размер текста для единообразия */
+            opacity: 0.7; /* Прозрачность текста */
         }
 
         .nav-icon {
@@ -60,6 +73,7 @@
         #shop {
             display: none;
             padding: 20px;
+            padding-bottom: 100px; /* Добавляем отступ внизу, чтобы не перекрывать нижнее меню */
         }
 
         #shop-banner {
@@ -139,6 +153,12 @@
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .product img {
+                width: 120%; /* Увеличиваем размер изображения */
+                max-width: none; /* Убираем ограничение по максимальной ширине */
+                margin-left: -10%; /* Сдвигаем изображение влево */
+            }
         }
 
         @media (min-width: 769px) {
@@ -189,6 +209,11 @@
             <div class="product">
                 <img src="dbd_chap1.png" alt="Product 3">
                 <h3>Товар 3</h3>
+                <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
+            </div>
+            <div class="product">
+                <img src="dbd_chap1.png" alt="Product 4"> <!-- Четвёртый товар -->
+                <h3>Товар 4</h3>
                 <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
             </div>
         </div>
