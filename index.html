@@ -6,12 +6,9 @@
     <title>Web App</title>
     <link rel="stylesheet" href="styles.css"> <!-- Подключаем CSS -->
     <style>
-        /* Добавляем фоновое изображение на весь экран */
+        /* Фоновый цвет для всего экрана */
         body {
-            background-image: url('background.png'); /* Укажи корректный путь к изображению */
-            background-size: cover; /* Изображение будет покрывать весь экран */
-            background-position: center; /* Центрируем изображение */
-            background-repeat: no-repeat; /* Изображение не будет повторяться */
+            background-color: rgb(18, 18, 18); /* Цвет общего фона */
             height: 100vh; /* Высота экрана */
             margin: 0; /* Убираем отступы */
         }
@@ -23,9 +20,9 @@
             left: 0;
             right: 0;
             display: flex;
-            justify-content: space-around;
-            background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный черный фон для меню */
-            backdrop-filter: blur(10px); /* Эффект размытия фона */
+            justify-content: center; /* Центрируем все элементы */
+            align-items: center; /* Вертикальное выравнивание по центру */
+            background-color: rgb(41, 45, 46); /* Цвет фона для нижнего меню */
             padding: 10px 0; /* Отступы сверху и снизу */
         }
 
@@ -37,25 +34,26 @@
             border: none; /* Убираем границу */
             cursor: pointer; /* Указатель на кнопках */
             outline: none; /* Убираем синий эффект */
-            font-size: 10px; /* Размер шрифта для текста на кнопках */
-            color: rgba(255, 255, 255, 0.7); /* Прозрачный цвет текста */
-            text-align: center; /* Центрируем текст */
-        }
-
-        /* Убираем синий контур при нажатии */
-        .nav-item:focus {
-            outline: none; /* Убираем обводку при фокусе */
-        }
-        .nav-item:active {
-            outline: none; /* Убираем обводку при нажатии */
-            box-shadow: none; /* Убираем тень при нажатии */
+            font-size: 9px; /* Размер шрифта для текста на кнопках */
+            color: white; /* Цвет текста (белый) */
+            font-weight: bold; /* Жирный текст */
+            flex-grow: 1; /* Делаем все элементы одинаковой ширины */
+            max-width: 80px; /* Ограничиваем максимальную ширину элементов */
+            margin: 0 20px; /* Увеличиваем отступы между элементами */
         }
 
         .nav-icon {
-            width: 40px; /* Ширина иконок */
+            width: 30px; /* Уменьшенная ширина иконок */
             height: auto; /* Авто высота */
             display: block; /* Сделаем изображение блочным элементом */
             margin-bottom: 5px; /* Отступ снизу под иконкой */
+        }
+
+        /* Центрируем вкладку Магазин */
+        .nav-item.center {
+            flex-grow: 0; /* Убираем расширение для центрального элемента */
+            font-size: 10px; /* Чуть больший шрифт для центрального элемента */
+            margin: 0 40px; /* Отступы побольше для центрального элемента */
         }
     </style>
 </head>
@@ -63,15 +61,15 @@
     <div class="footer-nav">
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
-            <span>Магазин</span>
-        </button>
-        <button class="nav-item" onclick="vibrate()">
-            <img src="collections_icon.png" alt="" class="nav-icon">
             <span>Храм Тайн</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
             <span>Билды</span>
+        </button>
+        <button class="nav-item center" onclick="vibrate()">
+            <img src="collections_icon.png" alt="" class="nav-icon">
+            <span>Магазин</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
@@ -86,7 +84,7 @@
     <script>
         function vibrate() {
             if (navigator.vibrate) {
-                navigator.vibrate(1000); // Вибрация на 1 секунду
+                navigator.vibrate(500); // Вибрация на 0.5 секунды
             } else {
                 console.log("Вибрация не поддерживается на этом устройстве");
             }
@@ -94,17 +92,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
