@@ -3,14 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web App</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Подключаем CSS -->
+    <title>Web App - Магазин</title>
     <style>
         /* Фоновый цвет на весь экран */
         body {
             background-color: rgb(18, 18, 18); /* Основной фон */
             height: 100vh; /* Высота экрана */
             margin: 0; /* Убираем отступы */
+            overflow: auto; /* Разрешаем скролл по умолчанию */
+        }
+
+        /* Стиль для магазина */
+        #shop {
+            display: none; /* Магазин скрыт по умолчанию */
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Три карточки в строке на компьютере */
+            gap: 20px; /* Расстояние между карточками */
+        }
+
+        .product-card {
+            background-color: rgb(41, 45, 46); /* Цвет карточки */
+            border-radius: 10px; /* Закругленные углы */
+            padding: 10px;
+            text-align: center;
+            color: white; /* Цвет текста */
+            font-weight: bold; /* Жирный текст */
+        }
+
+        .product-card img {
+            width: 100%; /* Изображение занимает всю ширину карточки */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .buy-button {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .buy-button:hover {
+            background-color: darkgray;
         }
 
         /* Стили для нижнего навигационного меню */
@@ -20,43 +59,74 @@
             left: 0;
             right: 0;
             display: flex;
-            justify-content: center; /* Центрируем кнопки */
+            justify-content: center;
             background-color: rgb(41, 45, 46); /* Фон для меню */
-            backdrop-filter: blur(10px); /* Эффект размытия фона */
             padding: 10px 20px; /* Отступы сверху и снизу */
         }
 
         .nav-item {
-            display: flex; /* Используем flex для корректного расположения текста и иконок */
-            flex-direction: column; /* Иконки сверху, текст снизу */
-            align-items: center; /* Центрируем текст и иконки */
-            background: transparent; /* Прозрачный фон для кнопок */
-            border: none; /* Убираем границу */
-            cursor: pointer; /* Указатель на кнопках */
-            outline: none; /* Убираем синий эффект */
-            font-size: 9px; /* Размер шрифта для текста на кнопках */
-            color: white; /* Цвет текста */
-            text-align: center; /* Центрируем текст */
-            margin: 0 15px; /* Увеличиваем расстояние между элементами */
-            font-weight: bold; /* Делаем текст жирным */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 9px;
+            color: white;
+            text-align: center;
+            margin: 0 15px;
+            font-weight: bold;
         }
 
         /* Убираем синий контур при нажатии и фокусе */
         .nav-item:focus,
         .nav-item:active {
-            outline: none; /* Убираем обводку при фокусе */
-            box-shadow: none; /* Убираем тень при нажатии */
+            outline: none;
+            box-shadow: none;
         }
 
         .nav-icon {
-            width: 30px; /* Уменьшаем ширину иконок */
-            height: auto; /* Авто высота */
-            display: block; /* Сделаем изображение блочным элементом */
-            margin-bottom: 2px; /* Отступ снизу под иконкой */
+            width: 30px;
+            height: auto;
+            margin-bottom: 2px;
+        }
+
+        /* Медиа-запрос для мобильных устройств */
+        @media (max-width: 768px) {
+            #shop {
+                grid-template-columns: repeat(2, 1fr); /* Две карточки в строке для мобильных устройств */
+            }
+
+            .product-card {
+                padding: 5px;
+            }
+
+            .buy-button {
+                font-size: 14px; /* Уменьшаем размер кнопки */
+            }
         }
     </style>
 </head>
 <body>
+    <div id="shop">
+        <div class="product-card">
+            <img src="dbd_chap1.png" alt="Товар 1">
+            <p>Товар 1</p>
+            <button class="buy-button">Купить</button>
+        </div>
+        <div class="product-card">
+            <img src="dbd_chap1.png" alt="Товар 2">
+            <p>Товар 2</p>
+            <button class="buy-button">Купить</button>
+        </div>
+        <div class="product-card">
+            <img src="dbd_chap1.png" alt="Товар 3">
+            <p>Товар 3</p>
+            <button class="buy-button">Купить</button>
+        </div>
+        <!-- Добавь больше товаров здесь -->
+    </div>
+
     <div class="footer-nav">
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
@@ -66,9 +136,9 @@
             <img src="collections_icon.png" alt="" class="nav-icon">
             <span>Друзья</span>
         </button>
-        <button class="nav-item" onclick="vibrate()">
+        <button class="nav-item" onclick="toggleShop()">
             <img src="collections_icon.png" alt="" class="nav-icon">
-            <span>Магазин</span> <!-- Центральный текст "Магазин" -->
+            <span>Магазин</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
@@ -83,10 +153,15 @@
     <script>
         function vibrate() {
             if (navigator.vibrate) {
-                navigator.vibrate(10); // Вибрация на 10 миллисекунд
+                navigator.vibrate(50); // Вибрация на 50 миллисекунд
             } else {
                 console.log("Вибрация не поддерживается на этом устройстве");
             }
+        }
+
+        function toggleShop() {
+            const shop = document.getElementById('shop');
+            shop.style.display = shop.style.display === 'none' ? 'grid' : 'none'; // Включаем отображение в виде сетки
         }
     </script>
 </body>
