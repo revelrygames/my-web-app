@@ -30,6 +30,7 @@
             border: 3px solid red;
             border-bottom: none;
             backdrop-filter: blur(5px);
+            z-index: 10; /* Увеличил z-index, чтобы меню было выше карточек */
         }
 
         .nav-item {
@@ -79,11 +80,13 @@
             position: relative;
             overflow: hidden;
             background-color: #2c2c2c;
-            text-align: center;
+            text-align: left; /* Изменено на left для размещения текста слева */
             color: rgb(255, 255, 255);
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
             transition: box-shadow 0.3s;
+            padding: 10px; /* Добавлено для внутреннего отступа */
+            z-index: 0; /* Установлено значение z-index для карточек */
         }
 
         .product:hover {
@@ -93,7 +96,7 @@
         .product h3 {
             position: relative;
             z-index: 1;
-            margin-top: 10px;
+            margin: 10px 0; /* Добавлено для отступа сверху и снизу */
         }
 
         .product img {
@@ -112,7 +115,7 @@
             color: white;
             border: none;
             padding: 10px;
-            margin-top: 10px;
+            margin-top: 2px; /* Уменьшено, чтобы кнопка была ближе к описанию */
             border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
@@ -191,7 +194,7 @@
                 <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap2.png" alt="The Last Breath Chapter">
+                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
                 <h3>The Last Breath Chapter</h3>
                 <p>Описание 1: Уникальные способности маньяка.</p>
                 <p>Описание 2: Новые карты для игры с друзьями.</p>
@@ -199,7 +202,7 @@
                 <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap3.png" alt="The Last Breath Chapter">
+                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
                 <h3>The Last Breath Chapter</h3>
                 <p>Описание 1: Уникальные способности маньяка.</p>
                 <p>Описание 2: Новые карты для игры с друзьями.</p>
@@ -207,7 +210,7 @@
                 <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap4.png" alt="The Last Breath Chapter">
+                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
                 <h3>The Last Breath Chapter</h3>
                 <p>Описание 1: Уникальные способности маньяка.</p>
                 <p>Описание 2: Новые карты для игры с друзьями.</p>
@@ -229,34 +232,23 @@
 
         function addToCart(productName) {
             cart.push(productName);
-            showPurchaseMessage();
-            console.log("Товары в корзине:", cart);
-        }
-
-        function showPurchaseMessage() {
-            const message = document.getElementById('purchase-message');
-            message.style.display = 'block';
+            document.getElementById('purchase-message').style.display = 'block';
             setTimeout(() => {
-                message.style.opacity = '1';
-            }, 10);
+                document.getElementById('purchase-message').style.opacity = 1;
+            }, 0);
             setTimeout(() => {
-                message.style.opacity = '0';
-                setTimeout(() => {
-                    message.style.display = 'none';
-                }, 500);
-            }, 3000);
+                document.getElementById('purchase-message').style.opacity = 0;
+            }, 1500);
+            setTimeout(() => {
+                document.getElementById('purchase-message').style.display = 'none';
+            }, 2000);
         }
 
         function vibrate() {
             if (navigator.vibrate) {
-                navigator.vibrate(50);
+                navigator.vibrate(15);
             }
         }
-
-        // Открытие магазина по умолчанию
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("shop").style.display = "block";
-        });
     </script>
 </body>
 </html>
