@@ -20,7 +20,7 @@
             left: 0;
             right: 0;
             display: flex;
-            justify-content: space-between; /* Распределяем кнопки по всей ширине */
+            justify-content: center; /* Центрируем кнопки */
             background-color: rgb(41, 45, 46); /* Фон для меню */
             backdrop-filter: blur(10px); /* Эффект размытия фона */
             padding: 10px 20px; /* Отступы сверху и снизу */
@@ -37,7 +37,7 @@
             font-size: 9px; /* Размер шрифта для текста на кнопках */
             color: white; /* Цвет текста */
             text-align: center; /* Центрируем текст */
-            margin: 0 10px; /* Увеличиваем расстояние между элементами */
+            margin: 0 15px; /* Увеличиваем расстояние между элементами */
             font-weight: bold; /* Делаем текст жирным */
         }
 
@@ -83,7 +83,7 @@
     <script>
         function vibrate() {
             if (navigator.vibrate) {
-                navigator.vibrate(100); // Вибрация на 300 миллисекунд
+                navigator.vibrate(50); // Вибрация на 50 миллисекунд
             } else {
                 console.log("Вибрация не поддерживается на этом устройстве");
             }
