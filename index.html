@@ -52,7 +52,7 @@
             width: 30px; /* Уменьшаем ширину иконок */
             height: auto; /* Авто высота */
             display: block; /* Сделаем изображение блочным элементом */
-            margin-bottom: 5px; /* Отступ снизу под иконкой */
+            margin-bottom: 2px; /* Отступ снизу под иконкой */
         }
     </style>
 </head>
@@ -60,7 +60,7 @@
     <div class="footer-nav">
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
-            <span>Храм Тайн</span>
+            <span>Храм</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
@@ -83,7 +83,7 @@
     <script>
         function vibrate() {
             if (navigator.vibrate) {
-                navigator.vibrate(50); // Вибрация на 50 миллисекунд
+                navigator.vibrate(10); // Вибрация на 10 миллисекунд
             } else {
                 console.log("Вибрация не поддерживается на этом устройстве");
             }
