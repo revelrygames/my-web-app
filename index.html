@@ -21,15 +21,15 @@
             justify-content: space-around;
             align-items: center;
             background-color: rgba(30, 30, 30, 0.9);
-            backdrop-filter: blur(10px); /* Эффект размытия */
             border-radius: 30px 30px 0 0;
             padding: 10px;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
             width: calc(100% - 20px);
             max-width: 600px;
             box-sizing: border-box;
-            border: 3px solid red; /* Постоянный красный контур */
-            border-bottom: none; /* Убрана обводка снизу */
+            border: 3px solid red;
+            border-bottom: none;
+            backdrop-filter: blur(5px);
         }
 
         .nav-item {
@@ -47,11 +47,6 @@
             font-weight: bold;
         }
 
-        .nav-item span {
-            font-size: 12px;
-            opacity: 0.7;
-        }
-
         .nav-icon {
             width: 25px;
             height: auto;
@@ -60,10 +55,10 @@
         }
 
         #shop {
-            display: block; /* Магазин открыт по умолчанию */
+            display: block;
             padding: 20px;
-            overflow-y: auto; /* Включен скролл для магазина */
-            max-height: calc(100vh - 100px); /* Ограничение высоты */
+            overflow-y: scroll;
+            height: calc(100vh - 100px);
         }
 
         #shop-banner {
@@ -84,23 +79,32 @@
             position: relative;
             overflow: hidden;
             background-color: #2c2c2c;
-            padding: 15px;
             text-align: center;
             color: rgb(255, 255, 255);
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: box-shadow 0.3s;
         }
 
         .product:hover {
-            box-shadow: 0 0 0 5px red; /* Красный контур при наведении */
-            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
+        }
+
+        .product h3 {
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
         }
 
         .product img {
             width: 100%;
-            border-radius: 10px;
+            height: auto;
+            max-height: 75%;
+            border-radius: 10px 10px 0 0;
             display: block;
+            position: relative;
+            z-index: 1;
+            object-fit: cover;
         }
 
         .product .buy-button {
@@ -113,6 +117,8 @@
             cursor: pointer;
             font-weight: bold;
             transition: background-color 0.2s;
+            position: relative;
+            z-index: 1;
         }
 
         .product .buy-button:hover {
@@ -143,6 +149,10 @@
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .product img {
+                max-height: 75%;
+            }
         }
 
         @media (min-width: 769px) {
@@ -155,15 +165,15 @@
 <body>
     <div class="footer-nav">
         <button class="nav-item" onclick="vibrate()">
-            <img src="collections_icon.png" alt="" class="nav-icon">
+            <img src="collections_icon.png" alt="Icon for Храм" class="nav-icon">
             <span>Храм</span>
         </button>
         <button class="nav-item" onclick="toggleShop(); vibrate()">
-            <img src="collections_icon.png" alt="" class="nav-icon">
+            <img src="collections_icon.png" alt="Icon for Магазин" class="nav-icon">
             <span>Магазин</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
-            <img src="collections_icon.png" alt="" class="nav-icon">
+            <img src="collections_icon.png" alt="Icon for Билды" class="nav-icon">
             <span>Билды</span>
         </button>
     </div>
@@ -173,55 +183,79 @@
 
         <div class="product-grid">
             <div class="product">
-                <img src="dbd_chap1.png" alt="Product 1">
-                <h3>Товар 1</h3>
-                <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
+                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
+                <h3>The Last Breath Chapter</h3>
+                <p>Описание 1: Уникальные способности маньяка.</p>
+                <p>Описание 2: Новые карты для игры с друзьями.</p>
+                <p>Описание 3: Эксклюзивные предметы и косметика.</p>
+                <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap1.png" alt="Product 2">
-                <h3>Товар 2</h3>
-                <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
+                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
+                <h3>The Last Breath Chapter</h3>
+                <p>Описание 1: Уникальные способности маньяка.</p>
+                <p>Описание 2: Новые карты для игры с друзьями.</p>
+                <p>Описание 3: Эксклюзивные предметы и косметика.</p>
+                <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap1.png" alt="Product 3">
-                <h3>Товар 3</h3>
-                <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
+                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
+                <h3>The Last Breath Chapter</h3>
+                <p>Описание 1: Уникальные способности маньяка.</p>
+                <p>Описание 2: Новые карты для игры с друзьями.</p>
+                <p>Описание 3: Эксклюзивные предметы и косметика.</p>
+                <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap1.png" alt="Product 4">
-                <h3>Товар 4</h3>
-                <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
+                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
+                <h3>The Last Breath Chapter</h3>
+                <p>Описание 1: Уникальные способности маньяка.</p>
+                <p>Описание 2: Новые карты для игры с друзьями.</p>
+                <p>Описание 3: Эксклюзивные предметы и косметика.</p>
+                <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
             </div>
         </div>
+
+        <div id="purchase-message">Вы купили товар</div>
     </div>
 
-    <div id="purchase-message">Вы купили товар!</div>
-
     <script>
+        let cart = [];
+
         function toggleShop() {
             const shop = document.getElementById('shop');
             shop.style.display = shop.style.display === 'none' ? 'block' : 'none';
         }
 
+        function addToCart(productName) {
+            cart.push(productName);
+            showPurchaseMessage();
+            console.log("Товары в корзине:", cart);
+        }
+
         function showPurchaseMessage() {
             const message = document.getElementById('purchase-message');
             message.style.display = 'block';
-            message.style.opacity = '1';
+            setTimeout(() => {
+                message.style.opacity = '1';
+            }, 10);
             setTimeout(() => {
                 message.style.opacity = '0';
                 setTimeout(() => {
                     message.style.display = 'none';
                 }, 500);
-            }, 1000);
+            }, 3000);
         }
 
         function vibrate() {
-            navigator.vibrate(15);
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
         }
 
         // Открытие магазина по умолчанию
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('shop').style.display = 'block';
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("shop").style.display = "block";
         });
     </script>
 </body>
