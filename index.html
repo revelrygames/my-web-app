@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web App</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Подключаем CSS -->
     <style>
-        /* Фоновый цвет на весь экран */
         body {
-            background-color: rgb(18, 18, 18); /* Основной фон */
-            height: 100vh; /* Высота экрана */
-            margin: 0; /* Убираем отступы */
+            background-color: rgb(18, 18, 18);
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
 
         /* Стили для нижнего навигационного меню */
@@ -20,81 +18,101 @@
             left: 0;
             right: 0;
             display: flex;
-            justify-content: center; /* Центрируем кнопки */
-            background-color: rgb(41, 45, 46); /* Фон для меню */
-            backdrop-filter: blur(10px); /* Эффект размытия фона */
-            padding: 10px 20px; /* Отступы сверху и снизу */
+            justify-content: center;
+            background-color: rgb(41, 45, 46);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
         }
 
         .nav-item {
-            display: flex; /* Используем flex для корректного расположения текста и иконок */
-            flex-direction: column; /* Иконки сверху, текст снизу */
-            align-items: center; /* Центрируем текст и иконки */
-            background: transparent; /* Прозрачный фон для кнопок */
-            border: none; /* Убираем границу */
-            cursor: pointer; /* Указатель на кнопках */
-            outline: none; /* Убираем синий эффект */
-            font-size: 9px; /* Размер шрифта для текста на кнопках */
-            color: white; /* Цвет текста */
-            text-align: center; /* Центрируем текст */
-            margin: 0 15px; /* Увеличиваем расстояние между элементами */
-            font-weight: bold; /* Делаем текст жирным */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            font-size: 9px;
+            color: white;
+            text-align: center;
+            margin: 0 15px;
+            font-weight: bold;
         }
 
-        /* Убираем синий контур при нажатии и фокусе */
         .nav-item:focus,
         .nav-item:active {
-            outline: none; /* Убираем обводку при фокусе */
-            box-shadow: none; /* Убираем тень при нажатии */
+            outline: none;
+            box-shadow: none;
         }
 
         .nav-icon {
-            width: 30px; /* Уменьшаем ширину иконок */
-            height: auto; /* Авто высота */
-            display: block; /* Сделаем изображение блочным элементом */
-            margin-bottom: 2px; /* Отступ снизу под иконкой */
+            width: 30px;
+            height: auto;
+            display: block;
+            margin-bottom: 2px;
         }
 
-        /* Стили для карточек товаров */
-        .product-card {
-            background-color: #2c2c2c; /* Цвет фона карточки */
-            border-radius: 10px; /* Закругленные углы */
-            padding: 10px; /* Отступы внутри карточки */
-            margin: 10px; /* Отступы между карточками */
-            width: calc(33% - 20px); /* Ширина карточки (три карточки в ряд) */
-            max-width: 300px; /* Максимальная ширина карточки */
-            color: white; /* Цвет текста в карточке */
-            display: flex; /* Используем flex для размещения содержимого */
-            flex-direction: column; /* Размещение содержимого вертикально */
-            align-items: center; /* Центрируем содержимое */
+        /* Стили для контейнера товаров */
+        #shop {
+            display: none;
+            padding: 20px;
         }
 
-        .product-image {
-            width: 100%; /* Изображение занимает 100% ширины карточки */
-            height: auto; /* Авто высота */
-            border-radius: 10px; /* Закругленные углы для изображения */
+        /* Прямоугольное изображение над товарами */
+        #shop-banner {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
         }
 
-        .buy-button {
-            background-color: #4CAF50; /* Цвет фона кнопки */
-            color: white; /* Цвет текста кнопки */
-            border: none; /* Убираем границу */
-            padding: 10px 20px; /* Отступы внутри кнопки */
-            border-radius: 5px; /* Закругленные углы кнопки */
-            cursor: pointer; /* Указатель на кнопке */
-            font-weight: bold; /* Жирный текст */
-            margin-top: 10px; /* Отступ сверху */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
         }
 
-        /* Стили для скрытого меню магазина */
-        .shop-menu {
-            display: none; /* Скрываем меню по умолчанию */
-            padding: 20px; /* Отступы внутри меню */
-            color: white; /* Цвет текста */
+        .product {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product .buy-button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 769px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Навигационное меню -->
     <div class="footer-nav">
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
@@ -106,7 +124,7 @@
         </button>
         <button class="nav-item" onclick="toggleShop(); vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
-            <span>Магазин</span> <!-- Центральный текст "Магазин" -->
+            <span>Магазин</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
@@ -118,44 +136,42 @@
         </button>
     </div>
 
-    <div id="shopMenu" class="shop-menu">
-        <img src="rectangular_image.png" alt="Прямоугольное изображение" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 10px;">
-        <div class="product-card">
-            <img src="dbd_chap1.png" alt="Товар 1" class="product-image">
-            <span>Товар 1</span>
-            <button class="buy-button">Купить</button>
+    <!-- Контент магазина -->
+    <div id="shop">
+        <img id="shop-banner" src="banner.png" alt="Shop Banner">
+        <div class="product-grid">
+            <div class="product">
+                <img src="dbd_chap1.png" alt="Товар 1">
+                <button class="buy-button">Купить</button>
+            </div>
+            <div class="product">
+                <img src="dbd_chap1.png" alt="Товар 2">
+                <button class="buy-button">Купить</button>
+            </div>
+            <div class="product">
+                <img src="dbd_chap1.png" alt="Товар 3">
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
-        <div class="product-card">
-            <img src="dbd_chap1.png" alt="Товар 2" class="product-image">
-            <span>Товар 2</span>
-            <button class="buy-button">Купить</button>
-        </div>
-        <div class="product-card">
-            <img src="dbd_chap1.png" alt="Товар 3" class="product-image">
-            <span>Товар 3</span>
-            <button class="buy-button">Купить</button>
-        </div>
-        <!-- Добавь дополнительные товары, если нужно -->
     </div>
 
     <script>
+        let shopVisible = false;
+
+        function toggleShop() {
+            const shop = document.getElementById('shop');
+            shopVisible = !shopVisible;
+            shop.style.display = shopVisible ? 'block' : 'none';
+        }
+
         function vibrate() {
             if (navigator.vibrate) {
-                navigator.vibrate(50); // Вибрация на 50 миллисекунд
+                navigator.vibrate(15); // Вибрация на 15 миллисекунд
             } else {
                 console.log("Вибрация не поддерживается на этом устройстве");
             }
         }
-
-        function toggleShop() {
-            const shopMenu = document.getElementById('shopMenu');
-            if (shopMenu.style.display === "none" || shopMenu.style.display === "") {
-                shopMenu.style.display = "block"; // Показываем меню
-            } else {
-                shopMenu.style.display = "none"; // Скрываем меню
-            }
-        }
-
+        
         // Отключаем контекстное меню для изображений
         document.addEventListener('contextmenu', function(e) {
             if (e.target.tagName === 'IMG') {
