@@ -10,16 +10,6 @@
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             color: rgb(255, 255, 255);
-            overflow-x: hidden; /* Запрет горизонтальной прокрутки */
-            overflow-y: scroll; /* Включаем вертикальную прокрутку */
-            width: 100vw; /* Фиксируем ширину окна */
-            box-sizing: border-box; /* Учет отступов в ширине */
-            scrollbar-width: none; /* Скрываем ползунок в Firefox */
-        }
-
-        /* Скрытие ползунка прокрутки в WebKit браузерах (Chrome, Safari) */
-        body::-webkit-scrollbar {
-            display: none;
         }
 
         .footer-nav {
@@ -28,41 +18,38 @@
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            justify-content: space-between; /* Распределяем элементы по краям */
+            justify-content: space-around;
             align-items: center;
             background-color: rgba(30, 30, 30, 0.9);
-            backdrop-filter: blur(10px); /* Эффект размытия фона */
+            backdrop-filter: blur(10px); /* Эффект размытия */
             border-radius: 30px 30px 0 0;
             padding: 10px;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
-            width: calc(100% - 20px); /* Отступы по краям */
-            max-width: 600px; /* Максимальная ширина меню */
-            box-sizing: border-box; /* Учет отступов в ширине */
-            border: 3px solid red; /* Увеличена толщина красной обводки */
+            width: calc(100% - 20px);
+            max-width: 600px;
+            box-sizing: border-box;
+            border: 3px solid red; /* Постоянный красный контур */
             border-bottom: none; /* Убрана обводка снизу */
-            z-index: 10; /* Добавляем z-index, чтобы нижнее меню всегда было поверх содержимого */
         }
 
         .nav-item {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Центрируем текст */
-            justify-content: center; /* Центрируем кнопки */
+            align-items: center;
             background: transparent;
             border: none;
             cursor: pointer;
             outline: none;
-            font-size: 12px; /* Изменено на 12px для единообразия */
-            color: rgb(255, 255, 255); /* Изменено на полностью белый */
+            font-size: 12px;
+            color: rgb(255, 255, 255);
             text-align: center;
             margin: 0 5px;
             font-weight: bold;
-            transition: transform 0.1s;
         }
 
         .nav-item span {
-            font-size: 12px; /* Размер текста для единообразия */
-            opacity: 0.7; /* Прозрачность текста */
+            font-size: 12px;
+            opacity: 0.7;
         }
 
         .nav-icon {
@@ -73,9 +60,10 @@
         }
 
         #shop {
-            display: none;
+            display: block; /* Магазин открыт по умолчанию */
             padding: 20px;
-            padding-bottom: 100px; /* Добавляем отступ внизу, чтобы не перекрывать нижнее меню */
+            overflow-y: auto; /* Включен скролл для магазина */
+            max-height: calc(100vh - 100px); /* Ограничение высоты */
         }
 
         #shop-banner {
@@ -101,11 +89,11 @@
             color: rgb(255, 255, 255);
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-            transition: transform 0.2s, box-shadow 0.2s; /* Добавлено для анимации */
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .product:hover {
-            box-shadow: 0 0 0 5px red; /* Красный контур */
+            box-shadow: 0 0 0 5px red; /* Красный контур при наведении */
             border-radius: 10px;
         }
 
@@ -155,12 +143,6 @@
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .product img {
-                width: 120%; /* Увеличиваем размер изображения */
-                max-width: none; /* Убираем ограничение по максимальной ширине */
-                margin-left: -10%; /* Сдвигаем изображение влево */
-            }
         }
 
         @media (min-width: 769px) {
@@ -174,7 +156,7 @@
     <div class="footer-nav">
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
-            <span>Билды</span>
+            <span>Храм</span>
         </button>
         <button class="nav-item" onclick="toggleShop(); vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
@@ -182,7 +164,7 @@
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
-            <span>Храм</span>
+            <span>Билды</span>
         </button>
     </div>
 
@@ -196,17 +178,17 @@
                 <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap2.png" alt="Product 2">
+                <img src="dbd_chap1.png" alt="Product 2">
                 <h3>Товар 2</h3>
                 <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap3.png" alt="Product 3">
+                <img src="dbd_chap1.png" alt="Product 3">
                 <h3>Товар 3</h3>
                 <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap4.png" alt="Product 4">
+                <img src="dbd_chap1.png" alt="Product 4">
                 <h3>Товар 4</h3>
                 <button class="buy-button" onclick="showPurchaseMessage()">Купить</button>
             </div>
@@ -234,10 +216,13 @@
         }
 
         function vibrate() {
-            if ("vibrate" in navigator) {
-                navigator.vibrate(50); // Вибрация на 15 миллисекунд
-            }
+            navigator.vibrate(15);
         }
+
+        // Открытие магазина по умолчанию
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('shop').style.display = 'block';
+        });
     </script>
 </body>
 </html>
