@@ -6,9 +6,9 @@
     <title>Web App</title>
     <link rel="stylesheet" href="styles.css"> <!-- Подключаем CSS -->
     <style>
-        /* Фоновый цвет для всего экрана */
+        /* Фоновый цвет на весь экран */
         body {
-            background-color: rgb(18, 18, 18); /* Цвет общего фона */
+            background-color: rgb(18, 18, 18); /* Основной фон */
             height: 100vh; /* Высота экрана */
             margin: 0; /* Убираем отступы */
         }
@@ -20,9 +20,9 @@
             left: 0;
             right: 0;
             display: flex;
-            justify-content: center; /* Центрируем все элементы */
-            align-items: center; /* Вертикальное выравнивание по центру */
-            background-color: rgb(41, 45, 46); /* Цвет фона для нижнего меню */
+            justify-content: center; /* Центрируем содержимое */
+            background-color: rgb(41, 45, 46); /* Фон для меню */
+            backdrop-filter: blur(10px); /* Эффект размытия фона */
             padding: 10px 0; /* Отступы сверху и снизу */
         }
 
@@ -35,25 +35,24 @@
             cursor: pointer; /* Указатель на кнопках */
             outline: none; /* Убираем синий эффект */
             font-size: 9px; /* Размер шрифта для текста на кнопках */
-            color: white; /* Цвет текста (белый) */
-            font-weight: bold; /* Жирный текст */
-            flex-grow: 1; /* Делаем все элементы одинаковой ширины */
-            max-width: 80px; /* Ограничиваем максимальную ширину элементов */
-            margin: 0 20px; /* Увеличиваем отступы между элементами */
+            color: white; /* Цвет текста */
+            text-align: center; /* Центрируем текст */
+            margin: 0 5px; /* Уменьшаем расстояние между элементами */
+            font-weight: bold; /* Делаем текст жирным */
+        }
+
+        /* Убираем синий контур при нажатии и фокусе */
+        .nav-item:focus,
+        .nav-item:active {
+            outline: none; /* Убираем обводку при фокусе */
+            box-shadow: none; /* Убираем тень при нажатии */
         }
 
         .nav-icon {
-            width: 30px; /* Уменьшенная ширина иконок */
+            width: 30px; /* Уменьшаем ширину иконок */
             height: auto; /* Авто высота */
             display: block; /* Сделаем изображение блочным элементом */
             margin-bottom: 5px; /* Отступ снизу под иконкой */
-        }
-
-        /* Центрируем вкладку Магазин */
-        .nav-item.center {
-            flex-grow: 0; /* Убираем расширение для центрального элемента */
-            font-size: 10px; /* Чуть больший шрифт для центрального элемента */
-            margin: 0 40px; /* Отступы побольше для центрального элемента */
         }
     </style>
 </head>
@@ -65,15 +64,15 @@
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
-            <span>Билды</span>
-        </button>
-        <button class="nav-item center" onclick="vibrate()">
-            <img src="collections_icon.png" alt="" class="nav-icon">
-            <span>Магазин</span>
+            <span>Друзья</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
-            <span>Друзья</span>
+            <span>Магазин</span> <!-- Центральный текст "Магазин" -->
+        </button>
+        <button class="nav-item" onclick="vibrate()">
+            <img src="collections_icon.png" alt="" class="nav-icon">
+            <span>Билды</span>
         </button>
         <button class="nav-item" onclick="vibrate()">
             <img src="collections_icon.png" alt="" class="nav-icon">
@@ -84,7 +83,7 @@
     <script>
         function vibrate() {
             if (navigator.vibrate) {
-                navigator.vibrate(500); // Вибрация на 0.5 секунды
+                navigator.vibrate(300); // Вибрация на 300 миллисекунд
             } else {
                 console.log("Вибрация не поддерживается на этом устройстве");
             }
