@@ -58,6 +58,7 @@
             padding: 20px;
             overflow-y: auto;
             height: calc(100vh - 100px);
+            padding-bottom: 80px; /* Отступ снизу для нижнего меню */
         }
 
         #shop-banner {
@@ -235,11 +236,15 @@
 
         function toggleShop() {
             const shop = document.getElementById('shop');
-            shop.style.display = shop.style.display === 'none' ? 'block' : 'none';
+            shop.style.display = shop.style.display === 'block' ? 'none' : 'block';
         }
 
-        function addToCart(product) {
-            cart.push(product);
+        function addToCart(productName) {
+            cart.push(productName);
+            showPurchaseMessage();
+        }
+
+        function showPurchaseMessage() {
             const message = document.getElementById('purchase-message');
             message.style.display = 'block';
             message.style.opacity = 1;
