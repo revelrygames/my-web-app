@@ -20,8 +20,8 @@
         }
 
         #shop {
-            height: 100%;
-            overflow-y: auto;
+            height: calc(100% - 80px); /* Вычитаем высоту навигации */
+            overflow-y: auto; /* Скроллим только магазин */
             padding: 20px;
         }
 
@@ -74,46 +74,51 @@
         }
 
         .product {
-            position: relative;
-            overflow: hidden;
             background-color: #2c2c2c;
             text-align: left;
             color: rgb(255, 255, 255);
-            border-radius: 10px;
+            border-radius: 10px; /* Оставьте радиус для самой карточки */
             box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
             transition: box-shadow 0.3s, transform 0.3s;
-            padding: 10px;
+            overflow: hidden; /* Скрываем все, что выходит за пределы карточки */
+            padding: 0; /* Убираем общий отступ внутри карточки */
         }
+
 
             .product:hover {
                 box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
                 transform: scale(1.05);
             }
 
-            .product h3 {
-                margin: 10px 0;
+            .product h3, .product p, .product .buy-button {
+                margin: 10px; /* Устанавливаем отступы для текста и кнопки */
             }
 
             .product img {
-                width: 100%;
-                height: auto;
-                border-radius: 10px 10px 0 0;
-                object-fit: cover;
+                width: 100%; /* Заполняет всю ширину карточки */
+                height: auto; /* Сохраняет пропорции изображения */
+                border-radius: 0; /* Убираем закругление */
+                object-fit: cover; /* Изображение заполнит контейнер */
+                margin: 0; /* Убираем любые отступы для изображения */
+                filter: contrast(1.2) blur(0.5px); /* Эффект зернистости */
             }
+
+
+
 
             .product p {
                 font-size: 12px;
                 line-height: 1.6;
-                margin: 0;
+                margin: 10px; /* Убираем отступы, чтобы не было лишнего пространства */
+                padding-left: 1px; /* Отступ слева для текста */
             }
 
             .product .buy-button {
                 background-color: red;
                 color: white;
                 border: none;
-                padding: 10px;
-                margin-top: 5px;
-                border-radius: 10px;
+                padding: 8px;
+                border-radius: 12px;
                 cursor: pointer;
                 font-weight: bold;
                 transition: background-color 0.2s;
@@ -143,41 +148,65 @@
             width: 50px;
             height: 50px;
             position: fixed;
-            bottom: 130px; /* Увеличиваем расстояние от низа */
-            right: 10px; /* расстояние от правого края */
+            bottom: 130px;
+            right: 10px;
             cursor: pointer;
             z-index: 101;
-            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-radius: 50%;
             background-color: red;
-            padding: 10px;
-            text-align: center;
             font-size: 24px;
-            line-height: 30px;
             transition: opacity 0.5s ease, transform 0.5s ease;
+            color: white;
         }
 
-            .cart-icon.visible {
-                display: block;
-                opacity: 1;
-                transform: scale(1.1);
-            }
+        .cart-icon.visible {
+            display: flex;
+            opacity: 1;
+            transform: scale(1.1);
+        }
 
+        /* Выезжающее меню корзины */
         .cart-summary {
             position: fixed;
-            bottom: 70px; /* расстояние от низа, чтобы не накладывалось на значок корзины */
-            right: 10px; /* расстояние от правого края */
-            background-color: rgba(0, 0, 0, 0.7);
+            bottom: -100%; /* Скроем корзину за пределами экрана */
+            left: 0;
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            background-color: rgba(0, 0, 0, 0.9);
             color: white;
-            padding: 10px;
-            border-radius: 10px;
-            display: none;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
             z-index: 102;
+            transition: bottom 0.5s ease;
+            max-height: 50%;
+            overflow-y: auto;
+        }
+
+        /* Показ корзины */
+        .cart-summary.open {
+            bottom: 80px; /* Выезжает сверху над нижней навигацией */
         }
 
         .cart-total {
             font-weight: bold;
             margin-top: 10px;
+        }
+
+        .close-cart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
         }
 
         @media (max-width: 768px) {
@@ -246,15 +275,17 @@
 
     <div id="purchase-message">Товар добавлен в корзину!</div>
 
-    <div class="cart-icon" onclick="toggleCart()">
-        🛒
-    </div>
-
+    <!-- Меню корзины -->
     <div class="cart-summary" id="cart-summary">
         <h4>Корзина:</h4>
         <div id="cart-items"></div>
         <div class="cart-total" id="cart-total"></div>
         <button onclick="checkout()">Оформить заказ</button>
+        <div class="close-cart" onclick="toggleCart()">⬇</div> <!-- Кнопка закрытия корзины -->
+    </div>
+
+    <div class="cart-icon" onclick="toggleCart()">
+        🛒
     </div>
 
     <script>
@@ -272,6 +303,8 @@
             const cartSummary = document.getElementById('cart-summary');
             const cartItems = document.getElementById('cart-items');
             const cartTotal = document.getElementById('cart-total');
+            const cartIcon = document.querySelector('.cart-icon');
+            
             cartItems.innerHTML = ''; // Очистить предыдущие элементы
 
             cart.forEach((item, index) => {
@@ -281,8 +314,7 @@
             });
 
             cartTotal.textContent = `Общая цена: ${totalPrice} 💰`;
-            cartSummary.style.display = cart.length > 0 ? 'block' : 'none';
-            document.querySelector('.cart-icon').classList.toggle('visible', cart.length > 0);
+            cartIcon.classList.toggle('visible', cart.length > 0);
         }
 
         function showPurchaseMessage() {
@@ -308,7 +340,8 @@
 
         function toggleCart() {
             const cartSummary = document.getElementById('cart-summary');
-            cartSummary.style.display = cartSummary.style.display === 'block' ? 'none' : 'block';
+            const isOpen = cartSummary.classList.contains('open');
+            cartSummary.classList.toggle('open', !isOpen); // Открыть/закрыть корзину
         }
 
         function toggleShop() {
@@ -362,6 +395,10 @@
     </script>
 </body>
 </html>
+
+
+
+
 
 
 
