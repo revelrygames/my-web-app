@@ -20,17 +20,15 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            background-color: rgba(30, 30, 30, 0.9);
+            background-color: rgba(30, 30, 30, 0.5); /* Более прозрачное меню */
             border-radius: 30px 30px 0 0;
             padding: 10px;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
             width: calc(100% - 20px);
             max-width: 600px;
             box-sizing: border-box;
-            border: 3px solid red;
-            border-bottom: none;
-            backdrop-filter: blur(5px);
-            z-index: 10; /* Увеличил z-index, чтобы меню было выше карточек */
+            backdrop-filter: blur(10px); /* Эффект размытия */
+            border-top: 2px solid red; /* Красный контур сверху */
         }
 
         .nav-item {
@@ -58,7 +56,7 @@
         #shop {
             display: block;
             padding: 20px;
-            overflow-y: scroll;
+            overflow-y: auto;
             height: calc(100vh - 100px);
         }
 
@@ -80,23 +78,23 @@
             position: relative;
             overflow: hidden;
             background-color: #2c2c2c;
-            text-align: left; /* Изменено на left для размещения текста слева */
+            text-align: left;
             color: rgb(255, 255, 255);
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-            transition: box-shadow 0.3s;
-            padding: 10px; /* Добавлено для внутреннего отступа */
-            z-index: 0; /* Установлено значение z-index для карточек */
+            transition: box-shadow 0.3s, transform 0.3s;
+            padding: 10px;
         }
 
         .product:hover {
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
+            transform: scale(1.05);
         }
 
         .product h3 {
             position: relative;
             z-index: 1;
-            margin: 10px 0; /* Добавлено для отступа сверху и снизу */
+            margin: 10px 0;
         }
 
         .product img {
@@ -110,18 +108,31 @@
             object-fit: cover;
         }
 
+        .product p {
+            font-size: 12px; /* Уменьшение размера текста описания товара */
+            line-height: 1.6; /* Увеличение межстрочного интервала для пробелов */
+            margin: 0; /* Убираем отступы у параграфов */
+            overflow: hidden; /* Скрываем переполнение */
+            text-overflow: ellipsis; /* Добавляем многоточие */
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3; /* Ограничение на 3 строки */
+            max-height: 3.6em; /* Ограничиваем высоту до 3 строк */
+        }
+
         .product .buy-button {
             background-color: red;
             color: white;
             border: none;
             padding: 10px;
-            margin-top: 2px; /* Уменьшено, чтобы кнопка была ближе к описанию */
+            margin-top: 5px;
             border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
             transition: background-color 0.2s;
             position: relative;
             z-index: 1;
+            transform: translateY(-5px);
         }
 
         .product .buy-button:hover {
@@ -194,28 +205,25 @@
                 <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
-                <h3>The Last Breath Chapter</h3>
-                <p>Описание 1: Уникальные способности маньяка.</p>
-                <p>Описание 2: Новые карты для игры с друзьями.</p>
-                <p>Описание 3: Эксклюзивные предметы и косметика.</p>
-                <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
+                <img src="dbd_chap2.png" alt="The Last Breath Chapter 2">
+                <h3>The Last Breath Chapter 2</h3>
+                <p>Описание 1: Новый убийца с уникальными способностями.</p>
+                <p>Описание 2: Эксклюзивные награды и скины.</p>
+                <button class="buy-button" onclick="addToCart('The Last Breath Chapter 2')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
-                <h3>The Last Breath Chapter</h3>
-                <p>Описание 1: Уникальные способности маньяка.</p>
-                <p>Описание 2: Новые карты для игры с друзьями.</p>
-                <p>Описание 3: Эксклюзивные предметы и косметика.</p>
-                <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
+                <img src="dbd_chap3.png" alt="The Last Breath Chapter 3">
+                <h3>The Last Breath Chapter 3</h3>
+                <p>Описание 1: Новые карты для игры в команде.</p>
+                <p>Описание 2: Новые уникальные способности маньяков.</p>
+                <button class="buy-button" onclick="addToCart('The Last Breath Chapter 3')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap1.png" alt="The Last Breath Chapter">
-                <h3>The Last Breath Chapter</h3>
-                <p>Описание 1: Уникальные способности маньяка.</p>
-                <p>Описание 2: Новые карты для игры с друзьями.</p>
-                <p>Описание 3: Эксклюзивные предметы и косметика.</p>
-                <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
+                <img src="dbd_chap4.png" alt="The Last Breath Chapter 4">
+                <h3>The Last Breath Chapter 4</h3>
+                <p>Описание 1: Новые персонажи и карты.</p>
+                <p>Описание 2: Новые убийцы и эксклюзивные способности.</p>
+                <button class="buy-button" onclick="addToCart('The Last Breath Chapter 4')">Купить</button>
             </div>
         </div>
 
@@ -230,23 +238,22 @@
             shop.style.display = shop.style.display === 'none' ? 'block' : 'none';
         }
 
-        function addToCart(productName) {
-            cart.push(productName);
-            document.getElementById('purchase-message').style.display = 'block';
+        function addToCart(product) {
+            cart.push(product);
+            const message = document.getElementById('purchase-message');
+            message.style.display = 'block';
+            message.style.opacity = 1;
             setTimeout(() => {
-                document.getElementById('purchase-message').style.opacity = 1;
-            }, 0);
-            setTimeout(() => {
-                document.getElementById('purchase-message').style.opacity = 0;
-            }, 1500);
-            setTimeout(() => {
-                document.getElementById('purchase-message').style.display = 'none';
+                message.style.opacity = 0;
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 500);
             }, 2000);
         }
 
         function vibrate() {
             if (navigator.vibrate) {
-                navigator.vibrate(15);
+                navigator.vibrate(15); // Вибрация на 15 миллисекунд
             }
         }
     </script>
