@@ -20,15 +20,16 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            background-color: rgba(30, 30, 30, 0.5); /* Более прозрачное меню */
+            background-color: rgba(30, 30, 30, 0.5);
             border-radius: 30px 30px 0 0;
             padding: 10px;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
             width: calc(100% - 20px);
             max-width: 600px;
             box-sizing: border-box;
-            backdrop-filter: blur(10px); /* Эффект размытия */
-            border-top: 2px solid red; /* Красный контур сверху */
+            backdrop-filter: blur(10px);
+            border-top: 2px solid red;
+            z-index: 100; /* Добавлен z-index, чтобы панель всегда была поверх карточек */
         }
 
         .nav-item {
@@ -58,7 +59,7 @@
             padding: 20px;
             overflow-y: auto;
             height: calc(100vh - 100px);
-            padding-bottom: 80px; /* Отступ снизу для нижнего меню */
+            padding-bottom: 80px;
         }
 
         #shop-banner {
@@ -101,7 +102,7 @@
         .product img {
             width: 100%;
             height: auto;
-            max-height: 75%;
+            max-height: 75%; /* Убедимся, что изображение занимает 75% высоты карточки */
             border-radius: 10px 10px 0 0;
             display: block;
             position: relative;
@@ -110,15 +111,15 @@
         }
 
         .product p {
-            font-size: 12px; /* Уменьшение размера текста описания товара */
-            line-height: 1.6; /* Увеличение межстрочного интервала для пробелов */
-            margin: 0; /* Убираем отступы у параграфов */
-            overflow: hidden; /* Скрываем переполнение */
-            text-overflow: ellipsis; /* Добавляем многоточие */
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3; /* Ограничение на 3 строки */
-            max-height: 3.6em; /* Ограничиваем высоту до 3 строк */
+            -webkit-line-clamp: 3;
+            max-height: 3.6em;
         }
 
         .product .buy-button {
@@ -165,6 +166,11 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .product {
+                padding: 10px;
+                grid-template-columns: repeat(2, 1fr); /* Сделаем карточки немного шире на мобильных устройствах */
+            }
+
             .product img {
                 max-height: 75%;
             }
@@ -200,31 +206,30 @@
             <div class="product">
                 <img src="dbd_chap1.png" alt="The Last Breath Chapter">
                 <h3>The Last Breath Chapter</h3>
-                <p>Описание 1: Уникальные способности маньяка.</p>
-                <p>Описание 2: Новые карты для игры с друзьями.</p>
-                <p>Описание 3: Эксклюзивные предметы и косметика.</p>
+                <p>Новый убийца: Медсестра.</p>
+                <p>Новый выживший: Нея.</p>
                 <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap2.png" alt="The Last Breath Chapter 2">
-                <h3>The Last Breath Chapter 2</h3>
-                <p>Описание 1: Новый убийца с уникальными способностями.</p>
-                <p>Описание 2: Эксклюзивные награды и скины.</p>
-                <button class="buy-button" onclick="addToCart('The Last Breath Chapter 2')">Купить</button>
+                <img src="dbd_chap2.png" alt="The Halloween® Chapter">
+                <h3>The Halloween® Chapter</h3>
+                <p>Новый убийца: Майл Маерс.</p>
+                <p>Новый выживший: Лори.</p>
+                <button class="buy-button" onclick="addToCart('The Halloween® Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap3.png" alt="The Last Breath Chapter 3">
-                <h3>The Last Breath Chapter 3</h3>
-                <p>Описание 1: Новые карты для игры в команде.</p>
-                <p>Описание 2: Новые уникальные способности маньяков.</p>
-                <button class="buy-button" onclick="addToCart('The Last Breath Chapter 3')">Купить</button>
+                <img src="dbd_chap3.png" alt="Of Flesh and Mud Chapter">
+                <h3>Of Flesh and Mud Chapter</h3>
+                <p>Новый убийца: Ведьма.</p>
+                <p>Новый выживший: Эйс Висконти.</p>
+                <button class="buy-button" onclick="addToCart('Of Flesh and Mud Chapter')">Купить</button>
             </div>
             <div class="product">
-                <img src="dbd_chap4.png" alt="The Last Breath Chapter 4">
-                <h3>The Last Breath Chapter 4</h3>
-                <p>Описание 1: Новые персонажи и карты.</p>
-                <p>Описание 2: Новые убийцы и эксклюзивные способности.</p>
-                <button class="buy-button" onclick="addToCart('The Last Breath Chapter 4')">Купить</button>
+                <img src="dbd_chap4.png" alt="Spark of Madness Chapter">
+                <h3>Spark of Madness Chapter</h3>
+                <p>Новый убийца: Доктор.</p>
+                <p>Новый выживший: Фенг Мин.</p>
+                <button class="buy-button" onclick="addToCart('Spark of Madness Chapter')">Купить</button>
             </div>
         </div>
 
@@ -239,6 +244,12 @@
             shop.style.display = shop.style.display === 'block' ? 'none' : 'block';
         }
 
+        function vibrate() {
+            if (navigator.vibrate) {
+                navigator.vibrate(15); // Вибрация на 15 миллисекунд
+            }
+        }
+
         function addToCart(productName) {
             cart.push(productName);
             showPurchaseMessage();
@@ -247,19 +258,14 @@
         function showPurchaseMessage() {
             const message = document.getElementById('purchase-message');
             message.style.display = 'block';
-            message.style.opacity = 1;
+            message.style.opacity = '1';
+
             setTimeout(() => {
-                message.style.opacity = 0;
+                message.style.opacity = '0';
                 setTimeout(() => {
                     message.style.display = 'none';
                 }, 500);
             }, 2000);
-        }
-
-        function vibrate() {
-            if (navigator.vibrate) {
-                navigator.vibrate(15); // Вибрация на 15 миллисекунд
-            }
         }
     </script>
 </body>
