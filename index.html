@@ -85,43 +85,43 @@
             padding: 10px;
         }
 
-        .product:hover {
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
-            transform: scale(1.05);
-        }
+            .product:hover {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
+                transform: scale(1.05);
+            }
 
-        .product h3 {
-            margin: 10px 0;
-        }
+            .product h3 {
+                margin: 10px 0;
+            }
 
-        .product img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px 10px 0 0;
-            object-fit: cover;
-        }
+            .product img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px 10px 0 0;
+                object-fit: cover;
+            }
 
-        .product p {
-            font-size: 12px;
-            line-height: 1.6;
-            margin: 0;
-        }
+            .product p {
+                font-size: 12px;
+                line-height: 1.6;
+                margin: 0;
+            }
 
-        .product .buy-button {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
+            .product .buy-button {
+                background-color: red;
+                color: white;
+                border: none;
+                padding: 10px;
+                margin-top: 5px;
+                border-radius: 10px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: background-color 0.2s;
+            }
 
-        .product .buy-button:hover {
-            background-color: darkred;
-        }
+                .product .buy-button:hover {
+                    background-color: darkred;
+                }
 
         #purchase-message {
             display: none;
@@ -139,64 +139,45 @@
             transition: opacity 0.5s ease;
         }
 
-        .fullscreen {
+        .cart-icon {
+            width: 50px;
+            height: 50px;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.8);
+            bottom: 130px; /* Увеличиваем расстояние от низа */
+            right: 10px; /* расстояние от правого края */
+            cursor: pointer;
+            z-index: 101;
             display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transform: scale(0.95);
+            border-radius: 50%;
+            background-color: red;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+            line-height: 30px;
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        .fullscreen.visible {
-            display: flex;
-            opacity: 1;
-            transform: scale(1);
-        }
+            .cart-icon.visible {
+                display: block;
+                opacity: 1;
+                transform: scale(1.1);
+            }
 
-        .fullscreen img {
-            max-width: 80%;
-            max-height: 50%;
-            object-fit: contain;
-            border-radius: 20px;
-        }
-
-        .fullscreen h3 {
-            color: white;
-            font-size: 24px;
-            margin-top: 20px;
-        }
-
-        .fullscreen p {
-            color: white;
-            font-size: 16px;
-            margin: 10px 0;
-        }
-
-        .close-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #f05340;
+        .cart-summary {
+            position: fixed;
+            bottom: 70px; /* расстояние от низа, чтобы не накладывалось на значок корзины */
+            right: 10px; /* расстояние от правого края */
+            background-color: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.2s;
+            border-radius: 10px;
+            display: none;
+            z-index: 102;
         }
 
-        .close-button:hover {
-            background-color: #d13a2e;
+        .cart-total {
+            font-weight: bold;
+            margin-top: 10px;
         }
 
         @media (max-width: 768px) {
@@ -226,7 +207,7 @@
             <img src="collections_icon.png" alt="Icon for Магазин" class="nav-icon">
             <span>Магазин</span>
         </button>
-        <button class="nav-item" onclick="vibrate()">
+        <button class="nav-item" onclick="toggleCart(); vibrate()">
             <img src="collections_icon.png" alt="Icon for Билды" class="nav-icon">
             <span>Билды</span>
         </button>
@@ -236,91 +217,163 @@
         <img id="shop-banner" src="banner.png" alt="Shop Banner">
 
         <div class="product-grid">
-            <div class="product" ondblclick="openFullscreen('dbd_chap1.png', 'The Last Breath Chapter', 'Медсестра, Нея')">
+            <div class="product" ondblclick="openFullscreen('dbd_chap1.png', 'The Last Breath', 'Медсестра, Нея')">
                 <img src="dbd_chap1.png" alt="The Last Breath Chapter">
                 <h3>The Last Breath Chapter</h3>
-                <p>• Медсестра.</p>
-                <p>• Нея.</p>
-                <button class="buy-button" onclick="addToCart('The Last Breath Chapter')">Купить</button>
+                <p>Цена: 750 💰</p>
+                <button class="buy-button" onclick="addToCart('The Last Breath', 750); return false;">Купить</button>
             </div>
-            <div class="product" ondblclick="openFullscreen('dbd_chap2.png', 'The Halloween® Chapter', 'Майкл Маерс, Лори')">
-                <img src="dbd_chap2.png" alt="The Halloween® Chapter">
-                <h3>The Halloween® Chapter</h3>
-                <p>• Майкл Маерс.</p>
-                <p>• Лори.</p>
-                <button class="buy-button" onclick="addToCart('The Halloween® Chapter')">Купить</button>
+            <div class="product" ondblclick="openFullscreen('dbd_chap2.png', 'Halloween', 'Шерлок')">
+                <img src="dbd_chap2.png" alt="Halloween Chapter">
+                <h3>Halloween Chapter</h3>
+                <p>Цена: 750 💰</p>
+                <button class="buy-button" onclick="addToCart('Halloween', 750); return false;">Купить</button>
             </div>
-            <div class="product" ondblclick="openFullscreen('dbd_chap3.png', 'Of Flesh and Mud Chapter', 'Ведьма, Эйс Висконти')">
+            <div class="product" ondblclick="openFullscreen('dbd_chap3.png', 'Of Flesh and Mud', 'Жасмин')">
                 <img src="dbd_chap3.png" alt="Of Flesh and Mud Chapter">
                 <h3>Of Flesh and Mud Chapter</h3>
-                <p>• Ведьма.</p>
-                <p>• Эйс Висконти.</p>
-                <button class="buy-button" onclick="addToCart('Of Flesh and Mud Chapter')">Купить</button>
+                <p>Цена: 750 💰</p>
+                <button class="buy-button" onclick="addToCart('Of Flesh and Mud', 750); return false;">Купить</button>
             </div>
-            <div class="product" ondblclick="openFullscreen('dbd_chap4.png', 'Spark of Madness Chapter', 'Доктор, Фенг Мин')">
+            <div class="product" ondblclick="openFullscreen('dbd_chap4.png', 'Spark of Madness', 'Эмма')">
                 <img src="dbd_chap4.png" alt="Spark of Madness Chapter">
                 <h3>Spark of Madness Chapter</h3>
-                <p>• Доктор.</p>
-                <p>• Фенг Мин.</p>
-                <button class="buy-button" onclick="addToCart('Spark of Madness Chapter')">Купить</button>
+                <p>Цена: 750 💰</p>
+                <button class="buy-button" onclick="addToCart('Spark of Madness', 750); return false;">Купить</button>
             </div>
         </div>
     </div>
 
-    <div id="purchase-message">Вы купили товар</div>
+    <div id="purchase-message">Товар добавлен в корзину!</div>
 
-    <div class="fullscreen" id="fullscreen">
-        <button class="close-button" onclick="closeFullscreen()">Закрыть</button>
-        <img id="fullscreen-image" src="" alt="Fullscreen Product Image">
-        <h3 id="fullscreen-title"></h3>
-        <p id="fullscreen-description"></p>
+    <div class="cart-icon" onclick="toggleCart()">
+        🛒
+    </div>
+
+    <div class="cart-summary" id="cart-summary">
+        <h4>Корзина:</h4>
+        <div id="cart-items"></div>
+        <div class="cart-total" id="cart-total"></div>
+        <button onclick="checkout()">Оформить заказ</button>
     </div>
 
     <script>
         let cart = [];
+        let totalPrice = 0;
+
+        function addToCart(item, price) {
+            cart.push(item);
+            totalPrice += price; // Добавляем цену товара к общей
+            updateCart();
+            showPurchaseMessage();
+        }
+
+        function updateCart() {
+            const cartSummary = document.getElementById('cart-summary');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            cartItems.innerHTML = ''; // Очистить предыдущие элементы
+
+            cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.textContent = item;
+                cartItems.appendChild(itemElement);
+            });
+
+            cartTotal.textContent = `Общая цена: ${totalPrice} 💰`;
+            cartSummary.style.display = cart.length > 0 ? 'block' : 'none';
+            document.querySelector('.cart-icon').classList.toggle('visible', cart.length > 0);
+        }
+
+        function showPurchaseMessage() {
+            const message = document.getElementById('purchase-message');
+            message.style.display = 'block';
+            setTimeout(() => {
+                message.style.opacity = 1;
+            }, 10);
+            setTimeout(() => {
+                message.style.opacity = 0;
+            }, 3000);
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 4000);
+        }
+
+        function checkout() {
+            alert('Оформление заказа...');
+            cart = []; // Очистить корзину
+            totalPrice = 0; // Сбросить общую цену
+            updateCart();
+        }
+
+        function toggleCart() {
+            const cartSummary = document.getElementById('cart-summary');
+            cartSummary.style.display = cartSummary.style.display === 'block' ? 'none' : 'block';
+        }
 
         function toggleShop() {
             const shop = document.getElementById('shop');
             shop.style.display = shop.style.display === 'block' ? 'none' : 'block';
         }
 
+        function openFullscreen(imgSrc, title, description) {
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = 0;
+            overlay.style.left = 0;
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            overlay.style.display = 'flex';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.style.zIndex = 1000;
+
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.style.maxWidth = '90%';
+            img.style.maxHeight = '90%';
+            img.style.borderRadius = '10px';
+
+            const titleElem = document.createElement('h2');
+            titleElem.textContent = title;
+            titleElem.style.color = 'white';
+
+            const descElem = document.createElement('p');
+            descElem.textContent = description;
+            descElem.style.color = 'white';
+
+            overlay.appendChild(img);
+            overlay.appendChild(titleElem);
+            overlay.appendChild(descElem);
+
+            overlay.onclick = function () {
+                document.body.removeChild(overlay);
+            };
+
+            document.body.appendChild(overlay);
+        }
+
         function vibrate() {
             if (navigator.vibrate) {
-                navigator.vibrate(15); // Вибрация на 15 миллисекунд
+                navigator.vibrate(100);
             }
-        }
-
-        function addToCart(productName) {
-            cart.push(productName);
-            showPurchaseMessage();
-        }
-
-        function showPurchaseMessage() {
-            const message = document.getElementById('purchase-message');
-            message.style.display = 'block';
-            message.style.opacity = '1';
-
-            setTimeout(() => {
-                message.style.opacity = '0';
-                setTimeout(() => {
-                    message.style.display = 'none';
-                }, 500);
-            }, 2000);
-        }
-
-        function openFullscreen(imageSrc, title, description) {
-            const fullscreen = document.getElementById('fullscreen');
-            document.getElementById('fullscreen-image').src = imageSrc;
-            document.getElementById('fullscreen-title').textContent = title;
-            document.getElementById('fullscreen-description').textContent = description;
-
-            fullscreen.classList.add('visible');
-        }
-
-        function closeFullscreen() {
-            const fullscreen = document.getElementById('fullscreen');
-            fullscreen.classList.remove('visible');
         }
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
