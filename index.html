@@ -262,56 +262,19 @@
         }
 
         @media (max-width: 768px) {
-            .product img {
-                width: 100%;
-                height: 55%; /* Изображение занимает 55% высоты карточки */
-                object-fit: cover;
-                margin: 0;
+            .product-card {
+                flex-direction: row; /* Изменение структуры карточки на мобильных устройствах */
+                justify-content: space-between;
             }
 
-            .product img {
-                width: 100%;
-                height: 55%; /* Изображение занимает 55% высоты карточки */
-                object-fit: cover;
-                margin: 0;
-            }
-
+                .product-card img {
+                    width: 55%; /* Изображение занимает 55% ширины карточки */
+                    height: auto;
+                }
 
             .product-details {
-                height: 45%; /* Оставшаяся часть карточки */
-                padding: 10px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-            }
-
-
-                .product img {
-                    width: 100%; /* Изображение заполняет всю ширину карточки */
-                    height: 100%; /* Изображение заполняет всю высоту карточки */
-                    object-fit: cover; /* Убедитесь, что изображение заполняет карточку без искажений */
-                    margin: 0; /* Убираем отступы */
-                    display: block; /* Убираем возможные пробелы под изображением */
-                }
-
-                .product h3 {
-                    font-size: 14px;
-                    margin: 5px 0; /* Уменьшаем отступы сверху и снизу */
-                }
-
-                .product p {
-                    font-size: 12px;
-                    margin: 5px 0;
-                }
-
-                .product .buy-button {
-                    width: calc(100% - 20px); /* Кнопка будет занимать почти всю ширину карточки */
-                    margin: 10px auto; /* Центрируем кнопку и добавляем отступы */
-                    display: block; /* Блочный элемент */
-                }
-
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* Две карточки в ряд */
+                width: 45%; /* Описание товара занимает оставшиеся 45% */
+                padding-left: 10px; /* Добавим отступ для пространства между изображением и текстом */
             }
         }
 
