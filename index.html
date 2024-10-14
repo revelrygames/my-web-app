@@ -262,61 +262,87 @@
         }
 
         @media (max-width: 768px) {
-            .product img {
-                height: 55%; /* Высота изображения — 55% от карточки */
+            @media (max-width: 768px) {
+                .product {
+                    padding: 10px;
+                    box-sizing: border-box;
+                    height: 350px; /* Добавим фиксированную высоту карточек */
+                }
+
+                    .product img {
+                        width: 100%; /* Изображение заполняет всю ширину карточки */
+                        height: 60%; /* Высота изображения — 60% от карточки */
+                        object-fit: cover; /* Изображение будет растягиваться по карточке, сохраняя пропорции */
+                    }
+
+                    .product h3 {
+                        font-size: 14px;
+                        margin: 5px 0; /* Уменьшаем отступы сверху и снизу */
+                    }
+
+                    .product p {
+                        font-size: 12px;
+                        margin: 5px 0;
+                    }
+
+                    .product .buy-button {
+                        width: calc(100% - 20px); /* Кнопка будет занимать почти всю ширину карточки */
+                        margin: 10px auto; /* Центрируем кнопку и добавляем отступы */
+                        display: block; /* Блочный элемент */
+                    }
+
+                .product-grid {
+                    grid-template-columns: repeat(2, 1fr); /* Две карточки в ряд */
+                }
             }
 
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* Две карточки в ряд */
-            }
-        }
 
 
-        @media (max-width: 768px) {
-            .product img {
-                width: 100%; /* Изображение заполняет всю ширину карточки */
-                height: auto; /* Сохраняет пропорции */
-                object-fit: contain; /* Изображение должно оставаться в карточке */
-                margin: 0; /* Убираем лишние отступы */
-            }
+            @media (max-width: 768px) {
+                .product img {
+                    width: 100%; /* Изображение заполняет всю ширину карточки */
+                    height: auto; /* Сохраняет пропорции */
+                    object-fit: contain; /* Изображение должно оставаться в карточке */
+                    margin: 0; /* Убираем лишние отступы */
+                }
 
-            .product .buy-button {
-                width: 90%; /* Кнопка будет занимать почти всю ширину карточки */
-                margin: 10px auto; /* Центрируем кнопку и добавляем отступы */
-                display: block; /* Блочный элемент */
-            }
+                .product .buy-button {
+                    width: 90%; /* Кнопка будет занимать почти всю ширину карточки */
+                    margin: 10px auto; /* Центрируем кнопку и добавляем отступы */
+                    display: block; /* Блочный элемент */
+                }
 
-            .product {
-                padding: 10px; /* Добавляем внутренний отступ для карточки */
-                box-sizing: border-box; /* Учитываем отступы для лучшего размещения */
-                height: 200px; /* Установите фиксированную высоту карточки */
-            }
+                .product {
+                    padding: 10px; /* Добавляем внутренний отступ для карточки */
+                    box-sizing: border-box; /* Учитываем отступы для лучшего размещения */
+                    height: 200px; /* Установите фиксированную высоту карточки */
+                }
 
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* Две карточки в ряд */
-            }
-        }
-
-
-
-
-        @keyframes cart-icon-bounce {
-            0% {
-                transform: scale(1);
+                .product-grid {
+                    grid-template-columns: repeat(2, 1fr); /* Две карточки в ряд */
+                }
             }
 
-            50% {
-                transform: scale(1.3);
+
+
+
+            @keyframes cart-icon-bounce {
+                0% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(1.3);
+                }
+
+                100% {
+                    transform: scale(1);
+                }
             }
 
-            100% {
-                transform: scale(1);
+            .cart-icon.bounce {
+                animation: cart-icon-bounce 0.5s ease-in-out;
             }
-        }
-
-        .cart-icon.bounce {
-            animation: cart-icon-bounce 0.5s ease-in-out;
-        }
 
     </style>
 </head>
