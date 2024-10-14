@@ -151,11 +151,6 @@
                 color: white !important; /* Цвет текста кнопки */
             }
 
-
-
-
-
-
             .product p {
                 font-size: 12px;
                 line-height: 1.6;
@@ -175,8 +170,6 @@
                 margin-left: 10px; /* Отступ слева */
                 margin-bottom: 10px; /* Отступ снизу для поднятия кнопки */
             }
-
-
 
             .product .buy-button:hover {
                     background-color: darkred;
@@ -237,7 +230,6 @@
         }
 
 
-
         .cart-icon.visible {
             display: flex;
             opacity: 1;
@@ -287,11 +279,11 @@
             font-size: 20px;
         }
 
-        @media (max-width: 1200px) {
-            .product-card {
+        @media (min-width: 1200px) {
+            .product-grid {
                 flex-direction: row; /* Изменение структуры карточки на пк */
                 justify-content: space-between;
-                grid-template-columns: repeat(4, 1fr); /* 2 товара на пк */
+                grid-template-columns: repeat(4, 1fr); /* 4 товара на пк */
             }
 
             .product-card img {
@@ -302,6 +294,7 @@
             }
 
 
+
             .product-details {
                 width: 25%; /* Описание товара занимает оставшиеся 25% */
                 padding-left: 10px; /* Добавим отступ для пространства между изображением и текстом */
@@ -309,7 +302,58 @@
 
         }
 
-            @keyframes cart-icon-bounce {
+        .search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#searchInput {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#searchButton {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #1e1e1e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background-color: #555;
+}
+
+
+        @keyframes flyToCart {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(-50px); /* Поднимите изображение вверх */
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateX(calc(30px - 50%)); /* Смещение в сторону корзины */
+                opacity: 0; /* Прозрачность при достижении корзины */
+            }
+        }
+
+        .fly {
+            animation: flyToCart 0.5s forwards; /* Анимация на 0.5 секунд */
+        }
+
+        
+        @keyframes cart-icon-bounce {
                 0% {
                     transform: scale(1);
                 }
@@ -346,6 +390,11 @@
 
     </div>
 
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Искать товары..." /> <!-- Изменено на searchInput -->
+        <button id="searchButton">Найти</button>
+    </div>
+
     <div id="shop">
         <img id="shop-banner" src="banner.png" alt="Shop Banner">
 
@@ -354,47 +403,82 @@
                 <img src="dbd_chap1.png" alt="The Last Breath Chapter">
                 <h3>The Last Breath Chapter</h3>
                 <p>Цена: 750 💰</p>
-                <button class="buy-button" onclick="addToCart('The Last Breath', 750); return false;">Купить</button>
+                <button class="buy-button" onclick="addToCart('The Last Breath', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap2.png', 'Halloween', 'Шерлок')">
                 <img src="dbd_chap2.png" alt="Halloween Chapter">
                 <h3>Halloween Chapter</h3>
                 <p>Цена: 750 💰</p>
-                <button class="buy-button" onclick="addToCart('Halloween', 750); return false;">Купить</button>
+                <button class="buy-button" onclick="addToCart('Halloween', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap3.png', 'Of Flesh and Mud', 'Жасмин')">
                 <img src="dbd_chap3.png" alt="Of Flesh and Mud Chapter">
                 <h3>Of Flesh and Mud Chapter</h3>
                 <p>Цена: 750 💰</p>
-                <button class="buy-button" onclick="addToCart('Of Flesh and Mud', 750); return false;">Купить</button>
+                <button class="buy-button" onclick="addToCart('Of Flesh and Mud', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap4.png', 'Spark of Madness', 'Эмма')">
                 <img src="dbd_chap4.png" alt="Spark of Madness Chapter">
                 <h3>Spark of Madness Chapter</h3>
                 <p>Цена: 750 💰</p>
-                <button class="buy-button" onclick="addToCart('Spark of Madness', 750); return false;">Купить</button>
+                <button class="buy-button" onclick="addToCart('Spark of Madness', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap5.png', 'A Lullaby for the Dark', 'Люся')">
                 <img src="dbd_chap5.png" alt="A Lullaby for the Dark">
                 <h3>A Lullaby for the Dark Chapter</h3>
                 <p>Цена: 750 💰</p>
-                <button class="buy-button" onclick="addToCart('A Lullaby for the Dark', 750); return false;">Купить</button>
+                <button class="buy-button" onclick="addToCart('A Lullaby for the Dark', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap5,5.png', 'Leatherface', 'Эмма')">
                 <img src="dbd_chap5_5.png" alt="Spark of">
                 <h3>Leatherface Chapter</h3>
                 <p>Цена: 750 💰</p>
-                <button class="buy-button" onclick="addToCart('Leatherface', 750); return false;">Купить</button>
+                <button class="buy-button" onclick="addToCart('Leatherface', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap6.png', 'A Nightmare on Elm Street', 'Клара')">
                 <img src="dbd_chap6.png" alt="A Nightmare on Elm Street">
                 <h3>A Nightmare on Elm Street Chapter</h3>
                 <p>Цена: 750 💰</p>
-                <button class="buy-button" onclick="addToCart('A Nightmare on Elm Street', 750); return false;">Купить</button>
+                <button class="buy-button" onclick="addToCart('A Nightmare on Elm Street', 750); return false;">Добавить в корзину</button>
             </div>
         </div>
     </div>
 
+    <script>
+        // Функция для выполнения поиска
+        function search(query) {
+            console.log('Поиск для запроса: ' + query);
+            // Реализуем поиск: отправляем запрос на сервер или фильтруем данные
+            // Например, можно фильтровать элементы на странице
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                const title = product.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(query.toLowerCase())) {
+                    product.style.display = 'block'; // Показываем подходящие продукты
+                } else {
+                    product.style.display = 'none'; // Скрываем неподходящие
+                }
+            });
+        }
+
+        // Обработчик для автоматического поиска при вводе двух и более символов
+        document.getElementById('searchInput').addEventListener('input', function () { // Изменено на searchInput
+            const query = this.value.trim();
+            if (query.length >= 2) {
+                search(query);
+            } else {
+                // Если запрос пуст, показываем все продукты
+                const products = document.querySelectorAll('.product');
+                products.forEach(product => product.style.display = 'block');
+            }
+        });
+
+        // Обработчик для кнопки поиска
+        document.getElementById('searchButton').addEventListener('click', function () {
+            const query = document.getElementById('searchInput').value.trim(); // Изменено на searchInput
+            search(query);
+        });
+    </script>
 
     <div id="purchase-message">Товар добавлен в корзину!</div>
     <!-- Меню корзины -->
@@ -407,12 +491,14 @@
         <div class="close-cart" onclick="toggleCart()">⬇</div> <!-- Кнопка закрытия корзины -->
     </div>
 
+    <input type="text" id="search-input" placeholder="Search..." />
+    <button id="search-button">Поиск</button>
+
 
     <div class="cart-icon" onclick="toggleCart()">
         🛒
         <span id="cart-count" class="cart-count">0</span> <!-- Добавляем элемент для счетчика -->
     </div>
-
 
     <script>
         let cart = [];
@@ -448,12 +534,105 @@
             }, 500);
         }
 
-
-
-
         document.addEventListener('DOMContentLoaded', function () {
             updateCart(); // Проверяем наличие товаров в корзине при загрузке страницы
         });
+
+        function flyToCart(itemImage) {
+            const cartIcon = document.querySelector('.cart-icon');
+
+            // Создаем клон изображения товара
+            const flyingImage = itemImage.cloneNode(); // Клонируем изображение
+            flyingImage.classList.add('fly'); // Добавляем класс анимации
+            document.body.appendChild(flyingImage); // Добавляем его в body
+
+            // Получаем координаты корзины
+            const cartRect = cartIcon.getBoundingClientRect();
+
+            // Устанавливаем начальную позицию изображения
+            flyingImage.style.position = 'absolute';
+            flyingImage.style.left = `${itemImage.getBoundingClientRect().left}px`;
+            flyingImage.style.top = `${itemImage.getBoundingClientRect().top}px`;
+
+            // Устанавливаем конечные координаты полета к корзине
+            setTimeout(() => {
+                flyingImage.style.transform = `translate(${cartRect.left - itemImage.getBoundingClientRect().left}px, ${cartRect.top - itemImage.getBoundingClientRect().top}px)`;
+            }, 0); // Запускаем анимацию после добавления изображения
+
+            // Удаляем изображение после завершения анимации
+            flyingImage.addEventListener('animationend', () => {
+                flyingImage.remove();
+            });
+        }
+
+        // Предположим, у нас есть заголовки твоих товаров
+        const products = [
+            { name: 'The Last Breath Chapter', category: 'Главы' },
+            { name: 'Halloween Chapter', category: 'Главы' },
+            { name: 'Of Flesh and Mud Chapter', category: 'Главы' },
+            { name: 'Spark of Madness Chapter', category: 'Главы' },
+            { name: 'A Lullaby for the Dark Chapter', category: 'Главы' },
+            { name: 'Leatherface Chapter', category: 'Главы' },
+            { name: 'A Nightmare on Elm Street Chapter', category: 'Главы' }
+        ];
+
+        // Функция сравнения строк с учётом подстрок и отдельных слов
+        function stringMatchScore(query, productName) {
+            const queryLower = query.toLowerCase();
+            const productLower = productName.toLowerCase();
+
+            let score = 0;
+
+            // Подстрока: если запрос полностью содержится в названии товара
+            if (productLower.includes(queryLower)) {
+                score += 1;
+            }
+
+            // Разбиваем запрос и название товара на слова
+            const queryWords = queryLower.split(' ');
+            const productWords = productLower.split(' ');
+
+            // Сравниваем количество совпадающих слов
+            queryWords.forEach(word => {
+                if (productWords.includes(word)) {
+                    score += 1; // За каждое совпадение слова
+                }
+            });
+
+            return score;
+        }
+
+        function searchProducts(query) {
+            // Сортируем товары по степени совпадения названия с запросом
+            const sortedProducts = products
+                .map(product => {
+                    return {
+                        ...product,
+                        matchScore: stringMatchScore(query, product.name) // Добавляем показатель совпадения
+                    };
+                })
+                .sort((a, b) => b.matchScore - a.matchScore); // Сортируем по убыванию совпадения
+
+            displaySearchResults(sortedProducts);
+        }
+
+        function displaySearchResults(results) {
+            const resultContainer = document.getElementById('searchResults');
+            resultContainer.innerHTML = ''; // Очищаем предыдущие результаты
+
+            results.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.textContent = `${product.name} (${product.category})`;
+                resultContainer.appendChild(productElement);
+            });
+        }
+
+        // Добавляем обработчик для кнопки поиска
+        document.getElementById('searchButton').addEventListener('click', () => {
+            const query = document.getElementById('searchInput').value;
+            searchProducts(query);
+        });
+
 
         function updateCart() {
             const cartItems = document.getElementById('cart-items');
@@ -485,8 +664,6 @@
                 cartIcon.style.display = 'none'; // Скрываем иконку
             }
         }
-
-
 
 
         function showPurchaseMessage() {
@@ -524,10 +701,8 @@
         }
 
 
-
-
         function toggleCart() {
-            
+
             const cartSummary = document.getElementById('cart-summary');
             const isOpen = cartSummary.classList.contains('open');
             cartSummary.classList.toggle('open', !isOpen); // Открыть/закрыть корзину
@@ -605,11 +780,6 @@
                 overlay.style.opacity = 1;
             }, 10);
         }
-
-
-
-
-
 
 
         function vibrate() {
