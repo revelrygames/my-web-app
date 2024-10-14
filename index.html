@@ -93,6 +93,24 @@
 
         }
 
+        /*Кнопка оформить в корзине*/
+        .checkout-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            margin-left: 0; /* Отступ слева */
+            margin-bottom: 0; /* Отступ снизу для поднятия кнопки */
+        }
+
+            .checkout-button:hover {
+                background-color: #218838; /* Цвет фона при наведении */
+            }
+
 
             .product:hover {
                 box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
@@ -160,9 +178,15 @@
 
 
 
-                .product .buy-button:hover {
+            .product .buy-button:hover {
                     background-color: darkred;
-                }
+            }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Устанавливаем 4 колонки на больших экранах */
+            gap: 20px;
+        }
 
         #purchase-message {
             display: none;
@@ -220,7 +244,7 @@
             transform: scale(1.1);
         }
 
-        /* Выезжающее меню корзины */
+        /* Выезжающее меню корзины вид */
         .cart-summary {
             position: fixed;
             bottom: -100%; /* Скроем корзину за пределами экрана */
@@ -228,16 +252,18 @@
             width: 100%;
             max-width: 400px;
             margin: auto;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(30, 30, 30, 0.8); /* Более темный фон с прозрачностью */
+            backdrop-filter: blur(15px); /* Эффект размытия фона */
             color: white;
             padding: 20px;
             border-radius: 10px 10px 0 0;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6); /* Увеличиваем тень */
             z-index: 102;
             transition: bottom 0.5s ease;
             max-height: 50%;
             overflow-y: auto;
         }
+
 
         /* Показ корзины */
         .cart-summary.open {
@@ -267,12 +293,12 @@
                 justify-content: space-between;
             }
 
-                .product-card img {
+            .product-card img {
                     width: 75%; /* Увеличили ширину до 75% */
                     height: auto;
                     display: block;
                     margin: 0 auto;
-                }
+            }
 
 
             .product-details {
@@ -347,19 +373,39 @@
                 <p>Цена: 750 💰</p>
                 <button class="buy-button" onclick="addToCart('Spark of Madness', 750); return false;">Купить</button>
             </div>
+            <div class="product" ondblclick="openFullscreen('dbd_chap5.png', 'A Lullaby for the Dark', 'Люся')">
+                <img src="dbd_chap5.png" alt="A Lullaby for the Dark">
+                <h3>A Lullaby for the Dark Chapter</h3>
+                <p>Цена: 750 💰</p>
+                <button class="buy-button" onclick="addToCart('A Lullaby for the Dark', 750); return false;">Купить</button>
+            </div>
+            <div class="product" ondblclick="openFullscreen('dbd_chap5,5.png', 'Leatherface', 'Эмма')">
+                <img src="dbd_chap5,5.png" alt="Spark of">
+                <h3>Leatherface Chapter</h3>
+                <p>Цена: 750 💰</p>
+                <button class="buy-button" onclick="addToCart('Leatherface', 750); return false;">Купить</button>
+            </div>
+            <div class="product" ondblclick="openFullscreen('dbd_chap6.png', 'A Nightmare on Elm Street', 'Клара')">
+                <img src="dbd_chap6.png" alt="A Nightmare on Elm Street">
+                <h3>A Nightmare on Elm Street Chapter</h3>
+                <p>Цена: 750 💰</p>
+                <button class="buy-button" onclick="addToCart('A Nightmare on Elm Street', 750); return false;">Купить</button>
+            </div>
         </div>
     </div>
 
-    <div id="purchase-message">Товар добавлен в корзину!</div>
 
+    <div id="purchase-message">Товар добавлен в корзину!</div>
     <!-- Меню корзины -->
     <div class="cart-summary" id="cart-summary">
         <h4>Корзина:</h4>
         <div id="cart-items"></div>
         <div class="cart-total" id="cart-total"></div>
-        <button onclick="checkout()">Оформить заказ</button>
+        <button class="checkout-button" onclick="checkout()">Оформить заказ</button>
+
         <div class="close-cart" onclick="toggleCart()">⬇</div> <!-- Кнопка закрытия корзины -->
     </div>
+
 
     <div class="cart-icon" onclick="toggleCart()">
         🛒
@@ -468,10 +514,19 @@
                 button.classList.remove('disabled');
                 button.disabled = false; // Включаем кнопки снова
             });
+
+            // Проверяем, есть ли кнопка с классом 'checkout-button'
+            const checkoutButton = document.querySelector('.checkout-button');
+            if (checkoutButton) {
+                checkoutButton.classList.add('checkout-button'); // Добавляем класс, если кнопка уже существует
+            }
         }
 
 
+
+
         function toggleCart() {
+            
             const cartSummary = document.getElementById('cart-summary');
             const isOpen = cartSummary.classList.contains('open');
             cartSummary.classList.toggle('open', !isOpen); // Открыть/закрыть корзину
