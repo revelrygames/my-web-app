@@ -291,6 +291,7 @@
             .product-card {
                 flex-direction: row; /* Изменение структуры карточки на мобильных устройствах */
                 justify-content: space-between;
+                grid-template-columns: repeat(2, 1fr); /* 2 товара на мобильных устройствах */
             }
 
             .product-card img {
@@ -380,7 +381,7 @@
                 <button class="buy-button" onclick="addToCart('A Lullaby for the Dark', 750); return false;">Купить</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap5,5.png', 'Leatherface', 'Эмма')">
-                <img src="dbd_chap5,5.png" alt="Spark of">
+                <img src="dbd_chap5_5.png" alt="Spark of">
                 <h3>Leatherface Chapter</h3>
                 <p>Цена: 750 💰</p>
                 <button class="buy-button" onclick="addToCart('Leatherface', 750); return false;">Купить</button>
