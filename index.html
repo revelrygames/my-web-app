@@ -8,8 +8,7 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
+          }
 
         #shop-banner {
             width: 100%;
@@ -34,8 +33,6 @@
             }
         }
 
-
-
         html, body {
             height: 100%;
             overflow: hidden;
@@ -46,12 +43,12 @@
 
         #shop {
             height: calc(100% - 80px); /* Вычитаем высоту навигации */
-            overflow-y: auto; /* Скроллим только магазин */
+            overflow: auto; /* Скроллим только магазин */
             padding: 20px; /* Увеличиваем отступ по сторонам */
-            padding-top: 98px; /* Увеличиваем отступ снизу для нижних товаров */
-            padding-bottom: 120px; /* Увеличиваем отступ снизу для нижних товаров */
+            box-sizing: border-box; /* Применяем для корректного отображения */
+            padding-top: 98px; /* Увеличиваем отступ сверху для нижних товаров */
+            padding-bottom: 110px; /* Увеличиваем отступ снизу для нижних товаров */
         }
-
 
         .footer-nav {
             position: fixed;
@@ -70,7 +67,7 @@
             box-sizing: border-box;
             backdrop-filter: blur(10px);
             border-top: 2px solid red;
-            z-index: 1000;
+            z-index: 100;
         }
 
         .nav-item {
@@ -106,15 +103,12 @@
         }
 
         .product {
-            background-color: #2c2c2c;
-            text-align: left;
-            color: rgb(255, 255, 255);
-            border-radius: 10px; /* Оставьте радиус для самой карточки */
-            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+            background-color: #1e1e1e; /* Более глубокий тёмный фон */
+            color: #f1f1f1; /* Сделаем текст более контрастным */
+            border-radius: 15px; /* Ещё больше скругляем углы */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Более выраженная тень */
             transition: box-shadow 0.3s, transform 0.3s;
-            overflow: hidden; /* Скрываем все, что выходит за пределы карточки */
-            padding: 0; /* Убираем общий отступ внутри карточки */
-
+            overflow: hidden;
         }
 
         /*Кнопка оформить в корзине*/
@@ -143,22 +137,25 @@
 
             /* Ограничение текста и добавление многоточия */
             .product h3 {
-                font-size: 14px;
-                line-height: 1.4;
-                white-space: nowrap; /* Не переносим текст на новую строку */
-                overflow: hidden; /* Скрываем лишний текст */
-                text-overflow: ellipsis; /* Добавляем многоточие */
-                margin: 10px;
-            }
+    font-size: 20px; /* Увеличим заголовок, как было предложено */
+    font-weight: bold; /* Сделаем текст жирным */
+    color: #ffffff; /* Белый цвет заголовка */
+    line-height: 1.4; /* Высота строки */
+    white-space: nowrap; /* Не переносим текст на новую строку */
+    overflow: hidden; /* Скрываем лишний текст */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+    margin: 10px; /* Оставляем отступы */
+}
 
-            .product img {
-                width: 100%; /* Заполняет всю ширину карточки */
-                height: auto; /* Сохраняет пропорции изображения */
-                border-radius: 0; /* Убираем закругление */
-                object-fit: cover; /* Изображение заполнит контейнер */
-                margin: 0; /* Убираем любые отступы для изображения */
-                display: block; /* Убираем возможные пробелы под изображением */
-            }
+
+        .product img {
+            width: 100%; /* Изображение занимает всю ширину карточки */
+            height: auto;
+            border-bottom-left-radius: 10px; /* Закругляем нижний левый угол */
+            border-bottom-right-radius: 10px; /* Закругляем нижний правый угол */
+            object-fit: cover; /* Обеспечиваем правильное масштабирование изображения */
+        }
+
 
 
             .product .buy-button.disabled {
@@ -175,12 +172,17 @@
                 color: white !important; /* Цвет текста кнопки */
             }
 
-            .product p {
-                font-size: 12px;
-                line-height: 1.6;
-                margin: 10px; /* Убираем отступы, чтобы не было лишнего пространства */
-                padding-left: 1px; /* Отступ слева для текста */
-            }
+            /* Отображению цены */
+        .product p {
+            font-size: 14px; /* Возвращаем исходный размер текста */
+            line-height: 0.4;
+            font-weight: bold; /* Сделаем текст жирным */
+            margin: 10px;
+            padding-left: 1px;
+            margin-bottom: 17px; /* Добавляем отступ снизу */
+            color: #ffffff; /* Меняем цвет текста на белый */
+        }
+
 
         .product .buy-button {
             background-color: red;
@@ -192,7 +194,7 @@
             font-weight: bold;
             transition: background-color 0.2s;
             margin-left: 10px; /* Отступ слева */
-            margin-bottom: 10px; /* Отступ снизу для поднятия кнопки */
+            margin-bottom: 13px; /* Отступ снизу для поднятия кнопки */
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -202,7 +204,7 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* У4 колонки на больших экранах */
+            grid-template-columns: repeat(2, 1fr); /* 4 колонки на больших экранах */
             gap: 20px;
         }
 
@@ -281,7 +283,11 @@
             overflow-y: auto;
         }
 
+        html {
+            scroll-behavior: smooth; /* Плавный скролл */
+        }
 
+      
         /* Показ корзины */
         .cart-summary.open {
             bottom: 80px; /* Выезжает сверху над нижней навигацией */
@@ -342,6 +348,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            box-sizing: border-box;
             z-index: 1000; /* Убедимся, что панель поверх остальных элементов */
             padding: 10px; /* Немного отступа внутри виджета */
             color: white; /* Цвет текста внутри виджета */
@@ -491,44 +498,44 @@
             <div class="product" ondblclick="openFullscreen('dbd_chap1.png', 'The Last Breath', 'Медсестра, Нея')">
                 <img src="dbd_chap1.png" alt="The Last Breath Chapter">
                 <h3>The Last Breath Chapter</h3>
-                <p>Цена: 750₽</p>
-                <button class="buy-button" onclick="addToCart('The Last Breath', 750); return false;">Добавить в корзину</button>
+                <p>Цена: 749₽</p>
+                <button class="buy-button" onclick="addToCart('The Last Breath', 749); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap2.png', 'Halloween', 'Шерлок')">
                 <img src="dbd_chap2.png" alt="Halloween Chapter">
                 <h3>Halloween Chapter</h3>
-                <p>Цена: 750₽</p>
-                <button class="buy-button" onclick="addToCart('Halloween', 750); return false;">Добавить в корзину</button>
+                <p>Цена: 749₽</p>
+                <button class="buy-button" onclick="addToCart('Halloween', 749); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap3.png', 'Of Flesh and Mud', 'Жасмин')">
                 <img src="dbd_chap3.png" alt="Of Flesh and Mud Chapter">
                 <h3>Of Flesh and Mud Chapter</h3>
-                <p>Цена: 750₽</p>
-                <button class="buy-button" onclick="addToCart('Of Flesh and Mud', 750); return false;">Добавить в корзину</button>
+                <p>Цена: 749₽</p>
+                <button class="buy-button" onclick="addToCart('Of Flesh and Mud', 749); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap4.png', 'Spark of Madness', 'Эмма')">
                 <img src="dbd_chap4.png" alt="Spark of Madness Chapter">
                 <h3>Spark of Madness Chapter</h3>
-                <p>Цена: 750₽</p>
-                <button class="buy-button" onclick="addToCart('Spark of Madness', 750); return false;">Добавить в корзину</button>
+                <p>Цена: 749₽</p>
+                <button class="buy-button" onclick="addToCart('Spark of Madness', 749); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap5.png', 'A Lullaby for the Dark', 'Люся')">
                 <img src="dbd_chap5.png" alt="A Lullaby for the Dark">
                 <h3>A Lullaby for the Dark Chapter</h3>
-                <p>Цена: 750₽</p>
-                <button class="buy-button" onclick="addToCart('A Lullaby for the Dark', 750); return false;">Добавить в корзину</button>
+                <p>Цена: 749₽</p>
+                <button class="buy-button" onclick="addToCart('A Lullaby for the Dark', 749); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap5,5.png', 'Leatherface', 'Эмма')">
                 <img src="dbd_chap5_5.png" alt="Spark of">
                 <h3>Leatherface Chapter</h3>
-                <p>Цена: 750₽</p>
-                <button class="buy-button" onclick="addToCart('Leatherface', 750); return false;">Добавить в корзину</button>
+                <p>Цена: 749₽</p>
+                <button class="buy-button" onclick="addToCart('Leatherface', 749); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap6.png', 'A Nightmare on Elm Street', 'Клара')">
                 <img src="dbd_chap6.png" alt="A Nightmare on Elm Street">
                 <h3>A Nightmare on Elm Street Chapter</h3>
-                <p>Цена: 750₽</p>
-                <button class="buy-button" onclick="addToCart('A Nightmare on Elm Street', 750); return false;">Добавить в корзину</button>
+                <p>Цена: 749₽</p>
+                <button class="buy-button" onclick="addToCart('A Nightmare on Elm Street', 749); return false;">Добавить в корзину</button>
             </div>
         </div>
     </div>
@@ -875,7 +882,6 @@
                 overlay.style.opacity = 1;
             }, 10);
         }
-
 
         function vibrate() {
             if (navigator.vibrate) {
