@@ -47,7 +47,8 @@
         #shop {
             height: calc(100% - 80px); /* Вычитаем высоту навигации */
             overflow-y: auto; /* Скроллим только магазин */
-            padding: 20px;
+            padding: 20px; /* Увеличиваем отступ по сторонам */
+            padding-top: 98px; /* Увеличиваем отступ снизу для нижних товаров */
             padding-bottom: 120px; /* Увеличиваем отступ снизу для нижних товаров */
         }
 
@@ -69,7 +70,7 @@
             box-sizing: border-box;
             backdrop-filter: blur(10px);
             border-top: 2px solid red;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .nav-item {
@@ -201,7 +202,7 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Устанавливаем 4 колонки на больших экранах */
+            grid-template-columns: repeat(2, 1fr); /* У4 колонки на больших экранах */
             gap: 20px;
         }
 
@@ -327,33 +328,95 @@
         }
 
         .search-container {
+            position: fixed;
+            top: 5px; /* Немного отступаем от верха */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; /* Ширина панели */
+            max-width: 600px; /* Максимальная ширина для больших экранов */
+            height: 50px;
+            border-radius: 25px; /* Делаем круглую форму */
+            background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный черный фон */
+            backdrop-filter: blur(10px); /* Эффект размытия фона */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Легкая тень */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Убедимся, что панель поверх остальных элементов */
+            padding: 10px; /* Немного отступа внутри виджета */
+            color: white; /* Цвет текста внутри виджета */
+        }
+
+
+            .search-container input {
+                border: none; /* Убираем рамку */
+                width: 90%; /* Ширина поля ввода */
+                height: 80%; /* Высота поля ввода */
+                border-radius: 20px; /* Делаем углы округлыми */
+                padding: 0 15px; /* Отступы по горизонтали */
+                font-size: 16px; /* Размер шрифта */
+                outline: none; /* Убираем обводку при фокусе */
+                background-color: transparent; /* Убираем фон, чтобы он был прозрачным */
+                color: white; /* Цвет текста в поле ввода */
+            }
+
+                
+        #searchInput {
+            width: 300px;
+            padding: 10px;
+            border: none;
+            border-radius: 25px; /* Увеличиваем округлость */
+            font-size: 16px;
+        }
+
+        #searchButton {
+            padding: 8px 12px; /* Уменьшаем отступы кнопки */
+            margin-left: 10px;
+            background-color: rgba(30, 30, 30, 0.8); /* Полупрозрачный фон кнопки */
+            color: white;
+            border: none;
+            border-radius: 20px; /* Делаем округлую форму */
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+
+        .search-container {
     display: flex;
     justify-content: center;
     margin: 20px 0;
 }
 
-#searchInput {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
+        #searchInput {
+            width: 90%; /* Ширина поля ввода */
+            height: 80%; /* Высота поля ввода */
+            border-radius: 20px; /* Округление углов */
+            padding: 0 15px; /* Отступы по горизонтали */
+            font-size: 16px; /* Размер шрифта */
+            outline: none; /* Убираем обводку при фокусе */
+            border: none; /* Убираем границу */
+            background-color: transparent; /* Убираем фон, чтобы он был прозрачным */
+        }
 
-#searchButton {
-    padding: 10px 15px;
-    margin-left: 10px;
-    background-color: #1e1e1e;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-}
 
-#searchButton:hover {
-    background-color: #555;
-}
+        #searchButton {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #1e1e1e;
+            color: white;
+            border: none;
+            border-radius: 25px; /* Делаем кнопку более округлой */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Добавляем плавные анимации */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
+        }
+
+            #searchButton:hover {
+                background-color: #333; /* Светлее при наведении */
+                transform: scale(1.05); /* Увеличение кнопки при наведении */
+            }
+
 
 
         @keyframes flyToCart {
@@ -420,6 +483,7 @@
         <button id="searchButton">Найти</button>
     </div>
 
+
     <div id="shop">
         <img id="shop-banner" src="banner.png" alt="Shop Banner">
 
@@ -427,43 +491,43 @@
             <div class="product" ondblclick="openFullscreen('dbd_chap1.png', 'The Last Breath', 'Медсестра, Нея')">
                 <img src="dbd_chap1.png" alt="The Last Breath Chapter">
                 <h3>The Last Breath Chapter</h3>
-                <p>Цена: 750 💰</p>
+                <p>Цена: 750₽</p>
                 <button class="buy-button" onclick="addToCart('The Last Breath', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap2.png', 'Halloween', 'Шерлок')">
                 <img src="dbd_chap2.png" alt="Halloween Chapter">
                 <h3>Halloween Chapter</h3>
-                <p>Цена: 750 💰</p>
+                <p>Цена: 750₽</p>
                 <button class="buy-button" onclick="addToCart('Halloween', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap3.png', 'Of Flesh and Mud', 'Жасмин')">
                 <img src="dbd_chap3.png" alt="Of Flesh and Mud Chapter">
                 <h3>Of Flesh and Mud Chapter</h3>
-                <p>Цена: 750 💰</p>
+                <p>Цена: 750₽</p>
                 <button class="buy-button" onclick="addToCart('Of Flesh and Mud', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap4.png', 'Spark of Madness', 'Эмма')">
                 <img src="dbd_chap4.png" alt="Spark of Madness Chapter">
                 <h3>Spark of Madness Chapter</h3>
-                <p>Цена: 750 💰</p>
+                <p>Цена: 750₽</p>
                 <button class="buy-button" onclick="addToCart('Spark of Madness', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap5.png', 'A Lullaby for the Dark', 'Люся')">
                 <img src="dbd_chap5.png" alt="A Lullaby for the Dark">
                 <h3>A Lullaby for the Dark Chapter</h3>
-                <p>Цена: 750 💰</p>
+                <p>Цена: 750₽</p>
                 <button class="buy-button" onclick="addToCart('A Lullaby for the Dark', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap5,5.png', 'Leatherface', 'Эмма')">
                 <img src="dbd_chap5_5.png" alt="Spark of">
                 <h3>Leatherface Chapter</h3>
-                <p>Цена: 750 💰</p>
+                <p>Цена: 750₽</p>
                 <button class="buy-button" onclick="addToCart('Leatherface', 750); return false;">Добавить в корзину</button>
             </div>
             <div class="product" ondblclick="openFullscreen('dbd_chap6.png', 'A Nightmare on Elm Street', 'Клара')">
                 <img src="dbd_chap6.png" alt="A Nightmare on Elm Street">
                 <h3>A Nightmare on Elm Street Chapter</h3>
-                <p>Цена: 750 💰</p>
+                <p>Цена: 750₽</p>
                 <button class="buy-button" onclick="addToCart('A Nightmare on Elm Street', 750); return false;">Добавить в корзину</button>
             </div>
         </div>
@@ -731,8 +795,18 @@
 
         function toggleShop() {
             const shop = document.getElementById('shop');
-            shop.style.display = shop.style.display === 'block' ? 'none' : 'block';
+            const searchContainer = document.querySelector('.search-container'); // Ищем .search-container вместо .search-panel
+
+            if (shop.style.display === 'block') {
+                shop.style.display = 'none'; // Закрываем магазин
+                searchContainer.style.display = 'none'; // Скрываем панель поиска
+            } else {
+                shop.style.display = 'block'; // Открываем магазин
+                searchContainer.style.display = 'flex'; // Показываем панель поиска, flex для правильного отображения
+            }
         }
+
+
 
         function openFullscreen(imgSrc, title, description) {
             const overlay = document.createElement('div');
